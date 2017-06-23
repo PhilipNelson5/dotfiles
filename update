@@ -1,9 +1,10 @@
 #!/bin/bash
 
-cp ~/.vimrc .
-cp ~/.zshrc .
-cp ~/.i3/config .
+cp ~/.vimrc ~/dotfiles
+cp ~/.zshrc ~/dotfiles
+cp ~/.i3/config ~/dotfiles
 
+cd ~/dotfiles
 git add .
 git commit
 ~/push.sh
