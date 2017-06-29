@@ -87,4 +87,27 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-function chpwd() ls
+alias bye='sudo shutdown now'        # shutdown system
+alias c='clear'                      # clear terminal
+alias update='~/sh/update.sh'        # update packages
+alias x='exit'                       # exits terminal
+alias vimrc='vim ~/.vimrc'           # open vimrc
+
+alias sl='ls'                        # fix my mistakes
+alias cs='cd'                        # fix my mistakes
+alias maek='make'                    # fix my mistakes
+
+alias please='sudo $(history -p !!)' # run last command with elevated privileges if you ask nicely
+alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
+alias CMake='cmake CMakeLists.txt'   # quick cmake shortcut
+alias python='python3'               # default to python3
+alias push=~/sh/push.sh                 # push to the current branch
+alias untar='tar -xzvf'              # untar a tarball 
+
+alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
+
+# shortcuts to my ssh.sh scripts
+alias bbb='~/sh/bbbb.sh' 
+alias SPA='~/sh/SPA.sh'
+
+function chpwd() ls                  # always ls after changing directories

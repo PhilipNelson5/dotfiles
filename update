@@ -2,9 +2,12 @@
 
 cp ~/.vimrc ~/dotfiles
 cp ~/.zshrc ~/dotfiles
-cp ~/.i3/config ~/dotfiles
+cp ~/.i3/config ~/dotfiles/.i3
+cp ~/.Xresources ~/dotfiles
+cp ~/.Xdefaults ~/dotfiles
+cp ~/.config/termite/config ~/dotfiles/.config/termite/
 
 cd ~/dotfiles
 git add .
 git commit
-~/push.sh
+~/sh/push.sh
