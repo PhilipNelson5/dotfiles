@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cp ~/.vimrc ~/dotfiles
-cp ~/.zshrc ~/dotfiles
-cp ~/.i3/config ~/dotfiles/.i3
-cp ~/.Xresources ~/dotfiles
-cp ~/.Xdefaults ~/dotfiles
-cp ~/.config/termite/config ~/dotfiles/.config/termite/
+cp ~/.vimrc ~/dotfiles/.vimrc_vim
+cp ~/.zshrc ~/dotfiles.zshrc_zsh
+cp ~/.i3/config ~/dotfiles/config_i3
+cp ~/.Xresources ~/dotfiles/Xresources_xTerm
+cp ~/.Xdefaults ~/dotfiles/Xdefaults_urxvt
+cp ~/.config/termite/config ~/dotfiles/config_termite
 
 cd ~/dotfiles
 git add .
