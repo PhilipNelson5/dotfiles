@@ -107,7 +107,7 @@ alias untar='tar -xzvf'              # untar a tarball
 alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
 
 # shortcuts to my ssh.sh scripts
-alias bbb='~/sh/bbbb.sh' 
+alias bbb='~/sh/bbb.sh' 
 alias SPA='~/sh/SPA.sh'
 
 function chpwd() ls                  # always ls after changing directories

@@ -43,13 +43,18 @@ nnoremap <F1> <nop>            " turn off F1 key
 set ttyfast                    " improved performance
 set lazyredraw                 " only redraw when needed (better for large macros)
 
+set laststatus=2
+set ttimeoutlen=50
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+
 " natural splits
 set splitbelow
 set splitright
 
 " set minimum height of a window
 set winminheight=0
-
 
 set linebreak "Vim will wrap long lines at a character in 'breakat' 
 " rather than at the last character that fits on the screen
@@ -119,16 +124,17 @@ nmap <C-F10> :bp<CR>               " Previuous buffer
 "===================================================================="
 
 syntax enable         " Enable syntax highlighting
-set background=dark   " Solarized dark theme
 colorscheme solarized " Solarized color scheme
+let g:solarized_termcolors=16
+set background=dark   " Solarized dark theme
 
 "===================================================================="
 "========================== [ Custom Maps ] ========================="
 "===================================================================="
 
 "draw line at the 81st column
-let &colorcolumn=join(range(72,999),",")
-let &colorcolumn="71,".join(range(400,999),",")
+let &colorcolumn=join(range(82,999),",")
+let &colorcolumn="81,".join(range(400,999),",")
 
 " toggle paste
 set pastetoggle=<C-A-p>
@@ -192,6 +198,87 @@ command! MakeTags !ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 
+" resize window
+" 5px
+nnoremap <silent> <C-Right> :vertical resize +5<CR>
+nnoremap <silent> <C-Left> :vertical resize -5<CR>
+nnoremap <silent> <C-Up> :resize +5<CR>
+nnoremap <silent> <C-Down> :resize -5<CR>
+" 1px
+nnoremap <silent> <C-S-Right> :vertical resize +1<CR>
+nnoremap <silent> <C-S-Left> :vertical resize -1<CR>
+nnoremap <silent> <C-S-Up> :resize +1<CR>
+nnoremap <silent> <C-S-Down> :resize -1<CR>
+
+"===================================================================="
+"============================ [ Windows ] ==========================="
+"===================================================================="
+" Show tab line when >1 tab open
+set showtabline=1
+
+" To open a new empty tab
+noremap <leader>t :tabnew<CR>
+
+" Move to the next tab
+noremap <leader>l :tabnext<CR>
+
+" Move to the previous tab
+noremap <leader>h :tabprevious<CR>
+
+" Close the current tab and move to the previous one
+noremap <leader>bq :bp <BAR> bd #<CR>
+
+"===================================================================="
+"============================ [ Buffers ] ==========================="
+"===================================================================="
+" Show all open buffers and their status
+noremap <leader>bl :ls<CR>
+
+" Next buffer
+nnoremap <F10> :bn<CR>
+nnoremap <C-F10> :bp<CR>
+
+"===================================================================="
+"======================== [ Tab Completion ] ========================"
+"===================================================================="
+"Search into all sub-folders and tab-complete file-related tasks
+set path+=**	
+
+"settings for wildmenu
+set wildmenu
+set wildmode=list:longest,full
+
+set wildignore+=*.swp,*.~un,*.class,*.pyc,*.png,*.jpg,*.gif,*.zip
+set wildignore+=*/tmp/*,*.o,*.obj,*.so     " Unix
+set wildignore+=*\\tmp\\*,*.exe            " Windows
+
+filetype plugin on
+set dictionary=/usr/share/dict/words
+set complete=.,w,b,u,t,i
+set completeopt=menu,preview
+set omnifunc=syntaxcomplete#Complete
+
+" Enable j & k to work in drop down auto complete lists
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
+
+" - ^x^n for JUST this file
+" - ^x^f for file names (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+inoremap <S-Tab> <Space><Space> " enable regular tabs
+
+"===================================================================="
+"======================= [ File Type Specific ] ====================="
+"===================================================================="
+augroup configgroup
+  autocmd!
+  autocmd FileType tex nmap <F3> :w<CR> :!latex '%:t'<CR>
+
+augroup END
+
 "===================================================================="
 "=========================== [ Functions ] =========================="
 "===================================================================="
@@ -219,3 +306,141 @@ augroup cline
   au WinEnter,InsertLeave * set cursorline
 augroup END
 
+"===================================================================="
+"=========================== [ Vim-Plug ] ==========================="
+"===================================================================="
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'rhysd/vim-clang-format'
+Plug 'vim-latex/vim-latex'
+Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-markdown'
+Plug 'suan/vim-instant-markdown'
+Plug 'junegunn/goyo.vim'
+"Plug 'scrooloose/syntastic'
+call plug#end()
+
+"------------------[NERDTree]-----------------"
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" closes NERDTree if last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" open NERDTree if no file was opened
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"---------------[Octol Highlight]-------------"
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+
+"------------------[Airline]------------------"
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+
+"----------------[clang-format]---------------"
+let g:clang_format#auto_format=0
+let g:clang_format#auto_format_on_insert_leave=0
+let g:clang_format#detect_style_file=1
+let g:clang_format#auto_formatexpr=1
+
+nnoremap <C-f> :ClangFormat<CR>zz
+vnoremap <C-f> :ClangFormat<CR>zz
+inoremap <C-f> <Esc>:ClangFormat<CR>zz
+
+""-----------------[syntastic]-----------------"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"----------------[LaTeX-Suite]----------------"
+filetype plugin on
+set grepprg=grep\ -nH\ $*
+filetype indent on
+let g:tex_flavor='latex'
+set sw=2
+set iskeyword+=:
+
+"------------------[Undo Tree]----------------"
+nnoremap <C-u> :UndotreeToggle<cr>
+
+"----------------[vim-markdown]---------------"
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:markdown_syntax_conceal = 0
+
+"--------------[instant-markdown]-------------"
+"you need:
+"sudo npm -g install instant-markdown-d
+
+"--------------------[Goyo]-------------------"
+function! s:auto_goyo()
+  if &ft == 'markdown' && winnr('$') == 1
+    Goyo 120
+  elseif exists('#goyo')
+    Goyo!
+  endif
+endfunction
+
+function! s:goyo_leave()
+  if winnr('$') < 2
+    silent! :q
+  endif
+endfunction
+
+augroup goyo_markdown
+  autocmd!
+  autocmd	BufNewFile,BufRead * call	s:auto_goyo()
+  autocmd! User	GoyoLeave	nested call	s:goyo_leave()
+augroup END
+
+"------------------[snippets]-----------------"
+" nnoremap ,<some command> :-1read $HOME/path/to/file.type<CR><commands to place cursor>
+
+" Pipe console output to scratch buffer
+" command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+" function! s:RunShellCommand(cmdline)
+" 	let isfirst = 1
+" 	let words = []
+" 	for word in split(a:cmdline)
+" 		if isfirst
+" 			let isfirst = 0  " don't change first word (shell command)
+" 		else
+" 			if word[0] =~ '\v[%#<]'
+" 				let word = expand(word)
+" 			endif
+" 			let word = shellescape(word, 1)
+" 		endif
+" 		call add(words, word)
+" 	endfor
+" 	let expanded_cmdline = join(words)
+" 	botright new
+" 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+" 	call setline(1, 'You entered:  ' . a:cmdline)
+" 	call setline(2, 'Expanded to:  ' . expanded_cmdline)
+" 	call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+" 	silent execute '$read !'. expanded_cmdline
+" 	1
+" endfunction
