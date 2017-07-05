@@ -20,9 +20,9 @@ cp ~/.config/termite/config ~/dotfiles/.config_termite
 cd ~/dotfiles
 echo -e "${BLUE} Adding to git"
 git add .
-echo "Committing to git"
+echo -e "${BLUE} Committing to git ${NC}"
 git commit
-echo "Pushing to git"
+echo -e "${BLUE} Pushing to git"
 ~/sh/push.sh
 
 echo -e "${GREEN} [DONE] ${NC}"
