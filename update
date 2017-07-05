@@ -1,12 +1,28 @@
 #!/bin/bash
 
+NC='\033[0m' # No Color
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+
+echo -e "${GREEN} COPYING FILES"
+echo -e "${CYAN} VIM"
 cp ~/.vimrc ~/dotfiles/.vimrc_vim
+echo "ZSH"
 cp ~/.zshrc ~/dotfiles/.zshrc_zsh
+echo "i3"
 cp ~/.i3/config ~/dotfiles/.config_i3
+echo "URXVT"
 cp ~/.Xresources ~/dotfiles/.Xresources_urxvt
+echo "TERMITE"
 cp ~/.config/termite/config ~/dotfiles/.config_termite
 
 cd ~/dotfiles
+echo -e "${BLUE} Adding to git"
 git add .
+echo "Committing to git"
 git commit
+echo "Pushing to git"
 ~/sh/push.sh
+
+echo -e "${GREEN} [DONE] ${NC}"
