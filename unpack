@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cp ~/dotfiles/.vimrc_vim ~/.vimrc 
+cp ~/dotfiles/.zshrc_zsh ~/.zshrc
+cp ~/dotfiles/.config_i3 ~/.i3/config
+cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
+cp ~/dotfiles/.config_termite ~/.config/termite/config
+
+exit
