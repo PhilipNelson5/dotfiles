@@ -3,12 +3,12 @@
 NC='\033[0m' # No Color
 GREEN='\033[0;32m'
 
-echo -e "${GREEN} Pulling master"
+echo -e "${GREEN} Pulling master ${NC}"
 cd ~/dotfiles
 git pull origin master
 sleep .1
 
-echo -e "${GREEN} Unpacking dotfiles"
+echo -e "${GREEN} Unpacking dotfiles ${NC}"
 cp ~/dotfiles/.vimrc_vim ~/.vimrc 
 cp ~/dotfiles/.zshrc_zsh ~/.zshrc
 cp ~/dotfiles/.config_i3 ~/.i3/config
@@ -16,6 +16,6 @@ cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
 cp ~/dotfiles/.config_termite ~/.config/termite/config
 cp ~/dotfiles/.tmux.conf ~/.tmux.conf
 sleep .1
-echo "[DONE] ${NC}"
+echo -e "${GREEN} [DONE] ${NC}"
 
 exit
