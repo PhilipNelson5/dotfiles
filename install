@@ -3,6 +3,11 @@
 NC='\033[0m' # No Color
 GREEN='\033[0;32m'
 
+echo -e "${GREEN} Pulling master"
+cd ~/dotfiles
+git pull origin master
+sleep .1
+
 echo -e "${GREEN} Unpacking dotfiles"
 cp ~/dotfiles/.vimrc_vim ~/.vimrc 
 cp ~/dotfiles/.zshrc_zsh ~/.zshrc
