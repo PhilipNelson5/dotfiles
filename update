@@ -8,28 +8,31 @@ GREEN='\033[0;32m'
 echo -e "${GREEN} COPYING FILES"
 echo -e "${CYAN} VIM"
 cp ~/.vimrc ~/dotfiles/.vimrc_vim
-sleep .1
+sleep .05
 
 echo "ZSH"
 cp ~/.zshrc ~/dotfiles/.zshrc_zsh
-sleep .1
+sleep .05
 
 echo "i3"
 cp ~/.i3/config ~/dotfiles/.config_i3
-sleep .1
+sleep .05
 
 echo "URXVT"
 cp ~/.Xresources ~/dotfiles/.Xresources_urxvt
-sleep .1
+sleep .05
 
 echo "TERMITE"
 cp ~/.config/termite/config ~/dotfiles/.config_termite
-sleep .1
+sleep .05
 
 echo "TMUX"
 cp ~/.tmux.conf ~/dotfiles/.tmux.conf
-sleep .1
+sleep .05
 
+echo "BASH ALIASES"
+cp ~/.bash_aliases ~/dotfiles/.bash_aliases
+sleep .05
 cd ~/dotfiles
 
 echo -e "${BLUE} Adding to git"
@@ -37,7 +40,6 @@ sleep .1
 git add .
 
 echo -e "${BLUE} Committing to git ${NC}"
-sleep .1
 git commit
 
 echo -e "${BLUE} Pushing to git ${NC}"

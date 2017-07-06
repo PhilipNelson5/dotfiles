@@ -137,7 +137,7 @@ let &colorcolumn=join(range(82,999),",")
 let &colorcolumn="81,".join(range(400,999),",")
 
 " toggle paste
-set pastetoggle=<S-p>
+set pastetoggle=<C-p>
 
 " Normal moving over wrapped lines
 nnoremap j gj
@@ -268,8 +268,15 @@ inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
 " - ^x^] for tags only
 " - ^n for anything specified by the 'complete' option
 
-inoremap <Tab> <C-p>
-inoremap <S-Tab> <Space><Space> " enable regular tabs
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+"inoremap <S-Tab> <Space><Space> " enable regular tabs
 
 "===================================================================="
 "======================= [ File Type Specific ] ====================="
