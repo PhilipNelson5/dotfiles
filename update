@@ -33,6 +33,11 @@ sleep .05
 echo "BASH ALIASES"
 cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 sleep .05
+
+echo "CLANG FORMAT"
+cp ~/.clang_format ~/dotfiles/.clang_format
+sleep .05
+
 cd ~/dotfiles
 
 echo -e "${BLUE} Adding to git"

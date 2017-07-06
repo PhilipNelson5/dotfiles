@@ -11,6 +11,7 @@ sleep .1
 echo -e "${GREEN} Unpacking dotfiles ${NC}"
 cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
 cp ~/dotfiles/.bash_aliases ~/.bash_aliases
+cp ~/dotfiles/.clang_format ~/clang_format
 cp ~/dotfiles/.config_i3 ~/.i3/config
 cp ~/dotfiles/.config_termite ~/.config/termite/config
 cp ~/dotfiles/.tmux.conf ~/.tmux.conf
