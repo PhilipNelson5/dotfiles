@@ -35,7 +35,7 @@ cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 sleep .05
 
 echo "CLANG FORMAT"
-cp ~/.clang_format ~/dotfiles/.clang_format
+cp ~/.clang-format ~/dotfiles/.clang-format
 sleep .05
 
 cd ~/dotfiles
