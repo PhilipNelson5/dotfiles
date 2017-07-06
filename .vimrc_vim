@@ -137,7 +137,7 @@ let &colorcolumn=join(range(82,999),",")
 let &colorcolumn="81,".join(range(400,999),",")
 
 " toggle paste
-set pastetoggle=<C-A-p>
+set pastetoggle=<S-p>
 
 " Normal moving over wrapped lines
 nnoremap j gj
@@ -268,6 +268,7 @@ inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
 " - ^x^] for tags only
 " - ^n for anything specified by the 'complete' option
 
+inoremap <Tab> <C-p>
 inoremap <S-Tab> <Space><Space> " enable regular tabs
 
 "===================================================================="
@@ -328,6 +329,7 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown'
 Plug 'junegunn/goyo.vim'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'scrooloose/syntastic'
 call plug#end()
 

@@ -1,9 +1,16 @@
 #!/bin/bash
 
+NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+
+echo -e "${GREEN} Unpacking dotfiles"
 cp ~/dotfiles/.vimrc_vim ~/.vimrc 
 cp ~/dotfiles/.zshrc_zsh ~/.zshrc
 cp ~/dotfiles/.config_i3 ~/.i3/config
 cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
 cp ~/dotfiles/.config_termite ~/.config/termite/config
+cp ~/dotfiles/.tmux.conf ~/.tmux.conf
+sleep .1
+echo "[DONE] ${NC}"
 
 exit
