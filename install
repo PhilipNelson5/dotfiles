@@ -9,12 +9,13 @@ git pull origin master
 sleep .1
 
 echo -e "${GREEN} Unpacking dotfiles ${NC}"
-cp ~/dotfiles/.vimrc_vim ~/.vimrc 
-cp ~/dotfiles/.zshrc_zsh ~/.zshrc
-cp ~/dotfiles/.config_i3 ~/.i3/config
 cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
+cp ~/dotfiles/.bash_aliases ~/.bash_aliases
+cp ~/dotfiles/.config_i3 ~/.i3/config
 cp ~/dotfiles/.config_termite ~/.config/termite/config
 cp ~/dotfiles/.tmux.conf ~/.tmux.conf
+cp ~/dotfiles/.vimrc_vim ~/.vimrc 
+cp ~/dotfiles/.zshrc_zsh ~/.zshrc
 sleep .1
 echo -e "${GREEN} [DONE] ${NC}"
 
