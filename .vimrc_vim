@@ -17,6 +17,12 @@ nnoremap <leader>rv :source $MYVIMRC<CR>
 " easy access to edit .vimrc
 noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>
 
+" Live update on write of your vimrc!!!
+augroup reload_vimrc
+autocmd!
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
 "===================================================================="
 "========================== [ The Basics ] =========================="
 "===================================================================="
