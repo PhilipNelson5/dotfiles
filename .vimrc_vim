@@ -4,6 +4,18 @@
 " you can learn something from mine! Happy vimming!
 
 "===================================================================="
+"============================= [ Notes ] ============================"
+"===================================================================="
+" Here are some useful things I have learned whilst building my vimrc
+"
+" * Put your vimrc on git hub or some sort of source control! There will be a
+" point when you screw up and will need to revert. That's ok, it's all safely
+" stowed away.
+"
+" * If you want to reset a key to it's default mapping, put unmap <key> and
+" reload your vimrc
+
+"===================================================================="
 "=========================== [ Beginning ] =========================="
 "===================================================================="
 
