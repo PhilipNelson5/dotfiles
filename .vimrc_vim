@@ -1,5 +1,7 @@
-" Welcome to my VIM config! This has been a work in progress since
-" the summer of 2016 when I started my journey to learn VIM. 
+" Welcome to my VIM configuration! This has been a work in progress
+" since the summer of 2016 when I started my journey to learn VIM. 
+" I have learned a lot by reading other peoples' vimrcs and I hope
+" you can learn something from mine! Happy vimming!
 
 "===================================================================="
 "=========================== [ Beginning ] =========================="
@@ -9,39 +11,39 @@
 " tells vim that it doesn't have to act like vi anymore
 set nocompatible
 
-" reload .vimrc"
+" reload .vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
-" easy access to vimrc
+" easy access to edit .vimrc
 noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>
 
 "===================================================================="
 "========================== [ The Basics ] =========================="
 "===================================================================="
-set ruler          " Turns the ruler on
-set number         " Line numbers
-set numberwidth=4  " Width of the gutter
-set shortmess=atI  " No help Uganda information
-set incsearch      " Find as you type search
-set nohlsearch     " No highlight search terms
-set ignorecase     " Case in-sensitive search
-set smartcase      " Case sensitive when uc present
-set autoread       " Automatically read a file changed outside of vim
-set autowrite      " Automatically write a file when leaving a modified buffer
-set hidden         " Allow buffer switching without saving
-set showcmd        " Show partial commands in status line and Selected characters/lines in visual mode
-set showmode       " Display current mode
-"set showmatch      " Show matching brackets/parentthesis
-set matchtime=5    " Show matching time
-set laststatus=2   " Always show status line
+set ruler               " Turns the ruler on
+set number              " Line numbers
+set numberwidth=4       " Width of the gutter
+set shortmess=atI       " No help Uganda information
+set incsearch           " Find as you type search
+set nohlsearch          " No highlight search terms
+set ignorecase          " Case in-sensitive search
+set smartcase           " Case sensitive when uc present
+set autoread            " Automatically read a file changed outside of vim
+set autowrite           " Automatically write a file when leaving a modified buffer
+set hidden              " Allow buffer switching without saving
+set showcmd             " Show partial commands on the status line and Selected characters/lines in visual mode
+set showmode            " Display current mode
+"set showmatch           " Show the matching bracket/brace/parenthesis
+set matchtime=5         " Show matching time
+set laststatus=2        " Always show status line
 filetype plugin indent on      " Automatically detect file types
 set linespace=0                " No extra spaces between rows
 set backspace=indent,eol,start " Backspace for dummies
 set backupdir=~/.vim/backup    " Set the backup directory
 set directory=~/.vim/swap      " Set the swap files directory
-nnoremap <F1> <nop>            " turn off F1 key
-set ttyfast                    " improved performance
-set lazyredraw                 " only redraw when needed (better for large macros)
+nnoremap <F1> <nop>            " Turn off F1 key
+set ttyfast                    " Improved performance
+set lazyredraw                 " Only redraw when needed (better for large macros)
 
 set laststatus=2
 set ttimeoutlen=50
@@ -68,31 +70,30 @@ if has('clipboard')
 endif
 
 if has('persistent_undo')
-  set undodir=~/.vim/undo/ " Set undo file directory
-  set undofile             " Persistent undo on
-  set undolevels=1000      " Maximum number of changes that can be undone
-  set undoreload=10000     " Maximum number lines to save for undo on a buffer reload
+set undodir=~/.vim/undo/       " Set undo file directory
+set undofile                   " Persistent undo on
+set undolevels=1000            " Maximum number of changes that can be undone
+set undoreload=10000           " Maximum number lines to save for undo on a buffer reload
 endif
 
+set pastetoggle=<C-p>          " Toggle paste mode
+ 
 "===================================================================="
 "======================= [ Mouse / Scrolling ] ======================"
 "===================================================================="
-nmap <ScrollWheelUp> 2<C-Y>    " Scrolling up
-nmap <ScrollWheelDown> 2<C-E>  " Scrolling down
-set mouse=a        " Enable mouse usage
-set mousehide      " Hide the mouse cursor while typing
+set mouse=a                    " Enable mouse usage
+set mousehide                  " Hide the mouse cursor while typing
 
 "===================================================================="
 "========================= [ Spell Checking ] ======================="
 "===================================================================="
-set spell spelllang=en_us    " Set spell check to English
-hi clear SpellBad
-hi SpellBad cterm=underline  " Underline misspelled words
-" change misspelled word
-nnoremap z<Space> z=
-" go to next/previous misspelled word
-nnoremap zn ]s
-nnoremap zN [s
+set spell spelllang=en_us      " Set spell check to English
+hi clear SpellBad              " highlight misspelled words
+hi SpellBad cterm=underline    " set highlight style to underline for misspelled
+
+nnoremap z<Space> z=           " change misspelled word
+nnoremap zn ]s                 " go to next misspelled word
+nnoremap zN [s                 " go to previous misspelled word
 
 "===================================================================="
 "============================= [ Folds ] ============================"
@@ -103,41 +104,29 @@ nnoremap zN [s
 "===================================================================="
 "======================== [ Tabs / Buffers ] ========================"
 "===================================================================="
-set autoindent
+set autoindent                         " Copy indent from current line when starting a new line
 filetype plugin indent on
-set tabstop=2
+set tabstop=2                          " Number of spaces that a <Tab> in the file counts for
 set softtabstop=2 
-set shiftwidth=2
-set expandtab
+set shiftwidth=2                       " Number of spaces to use for each step of (auto)indent
+set expandtab                          " Use spaces in place of tabs
 
-set showtabline=1                  " Show tab line when >1 tab open
-nmap <leader>t :tabnew<CR>         " Open a new empty tab
-nmap <Space>l :tabnext<CR>         " Move to the next tab
-nmap <Space>h :tabprevious<CR>     " Move to the previous tab
-nmap <leader>bq :bp <BAR> bd #<CR> " Close the current tab and move to the previous one
-nmap <leader>bl :ls<CR>            " Show all open buffers and their status
-nmap <F10> :bn<CR>                 " Next buffer
-nmap <C-F10> :bp<CR>               " Previuous buffer
-
-"===================================================================="
-"========================= [ Color Scheme ] ========================="
-"===================================================================="
-
-syntax enable         " Enable syntax highlighting
-colorscheme solarized " Solarized color scheme
-let g:solarized_termcolors=16
-set background=dark   " Solarized dark theme
+set showtabline=1                      " Show tab line when >1 tab open
+nnoremap <leader>t :tabnew<CR>         " Open a new empty tab
+nnoremap <Space>l :tabnext<CR>         " Move to the next tab
+nnoremap <Space>h :tabprevious<CR>     " Move to the previous tab
+nnoremap <leader>bq :bp <BAR> bd #<CR> " Close the current tab and move to the previous one
+nnoremap <leader>bl :ls<CR>            " Show all open buffers and their status
+nnoremap <F10> :bn<CR>                 " Next buffer
+nnoremap <C-F10> :bp<CR>               " Previuous buffer
 
 "===================================================================="
 "========================== [ Custom Maps ] ========================="
 "===================================================================="
 
 "draw line at the 81st column
-let &colorcolumn=join(range(82,999),",")
-let &colorcolumn="81,".join(range(400,999),",")
-
-" toggle paste
-set pastetoggle=<C-p>
+"let &colorcolumn=join(range(82,999),",")
+"let &colorcolumn="81,".join(range(400,999),",")
 
 " Normal moving over wrapped lines
 nnoremap j gj
@@ -148,15 +137,15 @@ nnoremap J gjzz
 nnoremap K gkzz
 
 " Visual shifting (does not exit Visual mode)
-"vnoremap < <gv
-"vnoremap > >gv
+vnoremap < <gv
+vnoremap > >gv
 
 " gg & G mark location
 nnoremap gg mjgg
 nnoremap G mjG
 
 " Center the screen after jumping to a mark
-nmap <expr> ' printf('`%c zz',getchar()) 
+nnoremap <expr> ' printf('`%c zz',getchar()) 
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
@@ -168,9 +157,8 @@ nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 
 " Easier to type, and I never use the default behavior
-nnoremap H ^                " Jump to beginning of line
-nnoremap L $                " Jump to end of line
-vnoremap L g_               " Jump to end of line
+noremap H ^
+noremap L g_
 
 " Auto curly braces
 inoremap <F2> {<Esc>o}<Esc>O
@@ -269,11 +257,11 @@ inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
 " - ^n for anything specified by the 'complete' option
 
 function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
+if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+return "\<C-N>"
+else
+return "\<Tab>"
+endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 "inoremap <S-Tab> <Space><Space> " enable regular tabs
@@ -282,8 +270,8 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 "======================= [ File Type Specific ] ====================="
 "===================================================================="
 augroup configgroup
-  autocmd!
-  autocmd FileType tex nmap <F3> :w<CR> :!latex '%:t'<CR>
+autocmd!
+autocmd FileType tex nmap <F3> :w<CR> :!latex '%:t'<CR>
 
 augroup END
 
@@ -309,22 +297,28 @@ augroup END
 " Only show cursor line in the current window and in normal mode.
 " It makes it easier to locate the cursor
 augroup cline
-  au!
-  au WinLeave,InsertEnter * set nocursorline
-  au WinEnter,InsertLeave * set cursorline
+au!
+au WinLeave,InsertEnter * set nocursorline
+au WinEnter,InsertLeave * set cursorline
 augroup END
 
 "===================================================================="
 "=========================== [ Vim-Plug ] ==========================="
+"======================== [ Plugin Manager ] ========================"
 "===================================================================="
 
+" If this is the first time you are using vim-plug on this machine
+" it will create the required file structure
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+" List of plugins for vim-plug to install
+" Format is Plug 'git repo'
 call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-airline/vim-airline'
@@ -340,21 +334,45 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'scrooloose/syntastic'
 call plug#end()
 
-"------------------[NERDTree]-----------------"
-nnoremap <C-n> :NERDTreeToggle<CR>
+"--------------------------------------------------------------------"
+"-------------------------- [ Solarized ] ---------------------------"
+" The Solarized color scheme for vim
+"--------------------------------------------------------------------"
+syntax enable
+set background=dark
+colorscheme solarized
+let g:solarized_termtrans=1   " Allow Solarized to have a transparent background
+let g:solarized_termcolors=16
+call togglebg#map("<F8>") " Toggle light and dark background
 
-" closes NERDTree if last window open
+"--------------------------------------------------------------------"
+"-------------------------- [ NERD Tree ] ---------------------------"
+" The NERD tree allows you to explore your file system
+" and open files and directories
+"--------------------------------------------------------------------"
+
+nnoremap <C-n> :NERDTreeToggle<CR> " toggle NERDTree with C-n
+
+" closes NERDTree if it is the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " open NERDTree if no file was opened
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"---------------[Octol Highlight]-------------"
+"--------------------------------------------------------------------"
+"---------------------------- [ Octol ] -----------------------------"
+" Additional Vim syntax highlighting for C++ 
+"--------------------------------------------------------------------"
+
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
-"------------------[Airline]------------------"
+"--------------------------------------------------------------------"
+"--------------------------- [ Airline ] ----------------------------"
+" Lean & mean status/tabline for vim that's light as air
+"--------------------------------------------------------------------"
+
 let g:airline#extensions#tabline#enabled = 2
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline_skip_empty_sections = 1
@@ -364,7 +382,11 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 
-"----------------[clang-format]---------------"
+"--------------------------------------------------------------------"
+"------------------------ [ clang-format ] --------------------------"
+" Formats your code with specific coding style using clang-format.
+"--------------------------------------------------------------------"
+
 let g:clang_format#auto_format=0
 let g:clang_format#auto_format_on_insert_leave=0
 let g:clang_format#detect_style_file=1
@@ -374,7 +396,72 @@ nnoremap <C-f> :ClangFormat<CR>zz
 vnoremap <C-f> :ClangFormat<CR>zz
 inoremap <C-f> <Esc>:ClangFormat<CR>zz
 
-""-----------------[syntastic]-----------------"
+"--------------------------------------------------------------------"
+"------------------------- [ Latex-Suite ] --------------------------"
+" Provides a rich tool of features for editing latex files
+"--------------------------------------------------------------------"
+
+filetype plugin on
+set grepprg=grep\ -nH\ $*
+filetype indent on
+let g:tex_flavor='latex'
+set sw=2
+set iskeyword+=:
+
+"--------------------------------------------------------------------"
+"-------------------------- [ Undo Tree ] ---------------------------"
+" Visitation of the vim undo tree
+"--------------------------------------------------------------------"
+
+nnoremap <C-u> :UndotreeToggle<cr>
+
+"--------------------------------------------------------------------"
+"------------------------ [ vim-markdown ] --------------------------"
+" Syntax and more for markdown in vim
+"--------------------------------------------------------------------"
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:markdown_syntax_conceal = 0
+
+"--------------------------------------------------------------------"
+"----------------------- [ instant-markdown ] -----------------------"
+"When you open a markdown file in vim, a browser window will open which shows
+"the compiled markdown in real-time, and closes once you close the file in vim.
+"--------------------------------------------------------------------"
+"sudo npm -g install instant-markdown-d
+
+"--------------------------------------------------------------------"
+"----------------------------- [ GOYO ] -----------------------------"
+" Distraction-free writing in Vim. Setup to remove all unnecessary
+" distractions while writing in markdown
+"--------------------------------------------------------------------"
+
+function! s:auto_goyo()
+if &ft == 'markdown' && winnr('$') == 1
+Goyo 120
+elseif exists('#goyo')
+Goyo!
+endif
+endfunction
+
+function! s:goyo_leave()
+if winnr('$') < 2
+silent! :q
+endif
+endfunction
+
+augroup goyo_markdown
+autocmd!
+autocmd	BufNewFile,BufRead * call	s:auto_goyo()
+autocmd! User	GoyoLeave	nested call	s:goyo_leave()
+augroup END
+
+"--------------------------------------------------------------------"
+"------------------------- [ Syntastic ] ----------------------------"
+" Syntax checking
+"--------------------------------------------------------------------"
+
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -384,48 +471,10 @@ inoremap <C-f> <Esc>:ClangFormat<CR>zz
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
-"----------------[LaTeX-Suite]----------------"
-filetype plugin on
-set grepprg=grep\ -nH\ $*
-filetype indent on
-let g:tex_flavor='latex'
-set sw=2
-set iskeyword+=:
 
-"------------------[Undo Tree]----------------"
-nnoremap <C-u> :UndotreeToggle<cr>
-
-"----------------[vim-markdown]---------------"
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
-let g:markdown_syntax_conceal = 0
-
-"--------------[instant-markdown]-------------"
-"you need:
-"sudo npm -g install instant-markdown-d
-
-"--------------------[Goyo]-------------------"
-function! s:auto_goyo()
-  if &ft == 'markdown' && winnr('$') == 1
-    Goyo 120
-  elseif exists('#goyo')
-    Goyo!
-  endif
-endfunction
-
-function! s:goyo_leave()
-  if winnr('$') < 2
-    silent! :q
-  endif
-endfunction
-
-augroup goyo_markdown
-  autocmd!
-  autocmd	BufNewFile,BufRead * call	s:auto_goyo()
-  autocmd! User	GoyoLeave	nested call	s:goyo_leave()
-augroup END
-
-"------------------[snippets]-----------------"
+"===================================================================="
+"=========================== [ Snippets ] ==========================="
+"===================================================================="
 " nnoremap ,<some command> :-1read $HOME/path/to/file.type<CR><commands to place cursor>
 
 " Pipe console output to scratch buffer
