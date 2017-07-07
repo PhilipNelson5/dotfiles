@@ -340,10 +340,10 @@ call plug#end()
 " The Solarized color scheme for vim
 "--------------------------------------------------------------------"
 syntax enable
-set background=dark
-colorscheme solarized
 let g:solarized_termtrans=1   " Allow Solarized to have a transparent background
 let g:solarized_termcolors=16
+set background=dark
+colorscheme solarized
 "call togglebg#map("<F8>") " Toggle light and dark background
 
 "--------------------------------------------------------------------"
