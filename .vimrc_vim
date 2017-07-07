@@ -320,6 +320,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -343,7 +344,7 @@ set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1   " Allow Solarized to have a transparent background
 let g:solarized_termcolors=16
-call togglebg#map("<F8>") " Toggle light and dark background
+"call togglebg#map("<F8>") " Toggle light and dark background
 
 "--------------------------------------------------------------------"
 "-------------------------- [ NERD Tree ] ---------------------------"
@@ -359,6 +360,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " open NERDTree if no file was opened
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"--------------------------------------------------------------------"
+"--------------------------- [ Tag Bar ] ----------------------------"
+" Provides an easy way to browse the tags of the current file 
+" and get an overview of its structure.
+"--------------------------------------------------------------------"
+
+noremap <F8> :TagbarToggle<CR>
 
 "--------------------------------------------------------------------"
 "---------------------------- [ Octol ] -----------------------------"
@@ -407,6 +416,13 @@ filetype indent on
 let g:tex_flavor='latex'
 set sw=2
 set iskeyword+=:
+"
+"--------------------------------------------------------------------"
+"-------------------------- [ git-gutter ] --------------------------"
+" Shows a git diff in the 'gutter'.
+" It shows whether a line has been added, modified, and where lines have been removed
+"--------------------------------------------------------------------"
+let g:gitgutter_realtime=1      " real time sign updates
 
 "--------------------------------------------------------------------"
 "-------------------------- [ Undo Tree ] ---------------------------"
