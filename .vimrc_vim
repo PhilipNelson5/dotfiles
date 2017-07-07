@@ -14,6 +14,11 @@
 "
 " * If you want to reset a key to it's default mapping, put unmap <key> and
 " reload your vimrc
+"
+" * If you have broken something and can not figure it out, try:
+" vim -V20 2>&1 | tee logfile
+" This will save a log of vim's loading output and this can help you locate
+" the source of your issue
 
 "===================================================================="
 "=========================== [ Beginning ] =========================="
