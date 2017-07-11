@@ -6,20 +6,22 @@ CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 
 echo -e "${GREEN} COPYING FILES"
-echo -e "${CYAN} VIM"
-cp ~/.vimrc ~/dotfiles/.vimrc_vim
+echo -e "${CYAN}"
+
+echo "BASH ALIASES"
+cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 sleep .05
 
-echo "ZSH"
-cp ~/.zshrc ~/dotfiles/.zshrc_zsh
+echo "CLANG FORMAT"
+cp ~/.clang-format ~/dotfiles/.clang-format
+sleep .05
+
+echo "COMPTON"
+cp ~/.config/compton.conf ~/dotfiles/.compton.conf
 sleep .05
 
 echo "i3"
 cp ~/.i3/config ~/dotfiles/.config_i3
-sleep .05
-
-echo "URXVT"
-cp ~/.Xresources ~/dotfiles/.Xresources_urxvt
 sleep .05
 
 echo "TERMITE"
@@ -30,17 +32,21 @@ echo "TMUX"
 cp ~/.tmux.conf ~/dotfiles/.tmux.conf
 sleep .05
 
-echo "BASH ALIASES"
-cp ~/.bash_aliases ~/dotfiles/.bash_aliases
+echo "VIM"
+cp ~/.vimrc ~/dotfiles/.vimrc
 sleep .05
 
-echo "CLANG FORMAT"
-cp ~/.clang-format ~/dotfiles/.clang-format
+echo "URXVT"
+cp ~/.Xresources ~/dotfiles/.Xresources_urxvt
+sleep .05
+
+echo "ZSH"
+cp ~/.zshrc ~/dotfiles/.zshrc
 sleep .05
 
 cd ~/dotfiles
 
-echo -e "${BLUE} Adding to git"
+echo -e "${BLUE} Adding to git ${NC}"
 sleep .1
 git add .
 
