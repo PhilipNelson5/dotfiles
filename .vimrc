@@ -362,7 +362,8 @@ call plug#end()
 "-------------------------- [ Solarized ] ---------------------------"
 " The Solarized color scheme for vim
 "--------------------------------------------------------------------"
-syntax enable
+set t_Co=256                  " Allow 256 colors
+syntax enable                 " Enable syntax highlighting
 let g:solarized_termtrans=1   " Allow Solarized to have a transparent background
 let g:solarized_termcolors=16
 set background=dark
