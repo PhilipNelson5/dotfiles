@@ -66,6 +66,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F4 exec slack
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -260,15 +261,15 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $up resize grow height 5 px or 5 ppt
-        bindsym $down resize shrink height 5 px or 5 ppt
+        bindsym $up resize shrink height 5 px or 5 ppt
+        bindsym $down resize grow height 5 px or 5 ppt
         bindsym $left resize shrink width 5 px or 5 ppt
         bindsym $right resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # exit resize mode: Enter or Escape

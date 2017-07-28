@@ -193,6 +193,11 @@ inoremap <C-u> <esc>mzgUiw`za
 noremap <F4> :cp<CR>zz
 noremap <F5> :cn<CR>zz
 
+" For compiling c++
+nnoremap <F3> :wa<CR> :make -j<CR>
+inoremap <F3> <ESC>:wa<CR> :make -j<CR>
+vnoremap <F3> <ESC>:wa<CR> :make -j<CR>
+
 " Searches for all instances fo TODO and FIXME
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 

@@ -108,8 +108,4 @@ alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow enviro
 alias update='~/sh/update.sh'        # update packages
 alias push=~/sh/push.sh              # push to the current git branch
 
-# ssh scripts because who remembers ip addresses
-alias bbb='~/sh/bbb.sh' 
-alias SPA='~/sh/SPA.sh'
-
 function chpwd() ls                  # always ls after changing directories
