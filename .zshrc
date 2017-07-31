@@ -1,8 +1,10 @@
+# source ~/.zshrc
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/philip/.oh-my-zsh
+export ZSH=/home/philip/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -71,12 +73,17 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+########################################################################
+#                               Aliases                                #
+########################################################################
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -90,22 +97,28 @@ source $ZSH/oh-my-zsh.sh
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
 alias x='exit'                       # exits terminal
-alias vimrc='vim ~/.vimrc'           # open vimrc
 
+# dotfile shortcuts
+alias vimrc='vim ~/.vimrc'           # change vimrc
+alias zshrc='vim ~/.zshrc'           # change zshrc
+alias Xrec='vim ~/.Xresources'       # change Xresources
+
+# fix mistakes
 alias sl='ls'                        # fix my mistakes
 alias cs='cd'                        # fix my mistakes
 alias maek='make'                    # fix my mistakes
 
-alias please='sudo $(fc -ln -1)' # run last command with elevated privileges if you ask nicely
+alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
 alias CMake='cmake CMakeLists.txt'   # quick cmake shortcut
 alias python='python3'               # default to python3
 alias untar='tar -xzvf'              # untar a tarball 
+alias ls='ls --color=auto'           # color ls output
 
 alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
 
 # shortcuts to some scripts
 alias update='~/sh/update.sh'        # update packages
-alias push=~/sh/push.sh              # push to the current git branch
+alias push='~/sh/push.sh'            # push to the current git branch
 
 function chpwd() ls                  # always ls after changing directories
