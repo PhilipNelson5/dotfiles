@@ -110,15 +110,21 @@ alias maek='make'                    # fix my mistakes
 
 alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
-alias CMake='cmake CMakeLists.txt'   # quick cmake shortcut
 alias python='python3'               # default to python3
 alias untar='tar -xzvf'              # untar a tarball 
-alias ls='ls --color=auto'           # color ls output
+
+# colors
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
 
 # shortcuts to some scripts
-alias update='~/sh/update.sh'        # update packages
-alias push='~/sh/push.sh'            # push to the current git branch
+alias update='~/scripts/update.sh'        # update packages
+alias push='~/scripts/push.sh'            # push to the current git branch
 
 function chpwd() ls                  # always ls after changing directories
