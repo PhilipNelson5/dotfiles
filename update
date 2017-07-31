@@ -55,6 +55,6 @@ git commit
 
 echo -e "${BLUE} Pushing to git ${NC}"
 sleep .1
-~/srcipts/push.sh
+~/scripts/push.sh
 
 echo -e "${GREEN} [DONE] ${NC}"
