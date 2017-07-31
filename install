@@ -16,7 +16,7 @@ cp ~/dotfiles/.config_i3 ~/.i3/config
 cp ~/dotfiles/.config_termite ~/.config/termite/config
 cp ~/dotfiles/.tmux.conf ~/.tmux.conf
 cp ~/dotfiles/.vimrc ~/.vimrc 
-cp ~/dotfiles/.Xresources_urxvt ~/.Xresources
+cp ~/dotfiles/.Xresources ~/.Xresources
 cp ~/dotfiles/.zshrc ~/.zshrc
 sleep .1
 echo -e "${GREEN} [DONE] ${NC}"

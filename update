@@ -37,7 +37,7 @@ cp ~/.vimrc ~/dotfiles/.vimrc
 sleep .05
 
 echo "URXVT"
-cp ~/.Xresources ~/dotfiles/.Xresources_urxvt
+cp ~/.Xresources ~/dotfiles/.Xresources
 sleep .05
 
 echo "ZSH"
