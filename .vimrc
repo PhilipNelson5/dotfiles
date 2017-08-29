@@ -198,7 +198,7 @@ nnoremap <F3> :wa<CR> :make -j<CR>
 inoremap <F3> <ESC>:wa<CR> :make -j<CR>
 vnoremap <F3> <ESC>:wa<CR> :make -j<CR>
 
-" Searches for all instances fo TODO and FIXME
+" Searches for all instances of TODO and FIXME
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 
 " Generic auto fix indentation
@@ -300,9 +300,16 @@ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 augroup configgroup
 autocmd!
 autocmd FileType tex nmap <F3> :w<CR> :!latex '%:t'<CR>
+autocmd FileType tex imap <F3> <ESC>:w<CR> :!latex '%:t'<CR>
 
 augroup END
 
+augroup configgroup
+autocmd!
+autocmd FileType python nmap <F3> :w<CR> :!python '%:t'<CR>
+autocmd FileType python imap <F3> <ESC>:w<CR> :!python '%:t'<CR>
+
+augroup END
 "===================================================================="
 "=========================== [ Functions ] =========================="
 "===================================================================="
