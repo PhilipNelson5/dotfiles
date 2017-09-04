@@ -226,6 +226,14 @@ nnoremap <silent> <C-S-Left> :vertical resize -1<CR>
 nnoremap <silent> <C-S-Up> :resize +1<CR>
 nnoremap <silent> <C-S-Down> :resize -1<CR>
 
+" automatically adds the correct shebang to script files
+augroup Shebang
+  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl>\"|$
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl>\"|$
+  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl>\"|$
+  autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
+augroup END
+
 "===================================================================="
 "============================ [ Windows ] ==========================="
 "===================================================================="
