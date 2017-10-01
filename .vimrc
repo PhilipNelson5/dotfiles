@@ -151,6 +151,10 @@ nnoremap <C-F10> :bp<CR>               " Previuous buffer
 "let &colorcolumn=join(range(82,999),",")
 "let &colorcolumn="81,".join(range(400,999),",")
 
+" Save on escape
+inoremap <C-C> <ESC>:w<CR>
+nnoremap <C-C> :w<CR>
+
 " Normal moving over wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -229,6 +233,7 @@ nnoremap <silent> <C-S-Down> :resize -1<CR>
 " automatically adds the correct shebang to script files
 augroup Shebang
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl>\"|$
+  autocmd BufNewFile *.ps 0put =\"%!PS\<nl>\"|$
   autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl>\"|$
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl>\"|$
   autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!

@@ -20,6 +20,10 @@ echo "COMPTON"
 cp ~/.config/compton.conf ~/dotfiles/.compton.conf
 sleep .05
 
+echo "GIT"
+cp ~/.gitconfig ~/dotfiles/.gitconfig
+sleep .05
+
 echo "i3"
 cp ~/.i3/config ~/dotfiles/.config_i3
 sleep .05
