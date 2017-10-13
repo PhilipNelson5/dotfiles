@@ -28,6 +28,9 @@
 " tells vim that it doesn't have to act like vi anymore
 set nocompatible
 
+" Set leader to space
+let mapleader="\<Space>"
+
 " reload .vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
@@ -45,10 +48,11 @@ augroup END
 "===================================================================="
 set ruler               " Turns the ruler on
 set number              " Line numbers
+set rnu                 " use relative line numbers
 set numberwidth=4       " Width of the gutter
 set shortmess=atI       " No help Uganda information
 set incsearch           " Find as you type search
-set nohlsearch          " No highlight search terms
+set hlsearch          " No highlight search terms
 set ignorecase          " Case in-sensitive search
 set smartcase           " Case sensitive when uc present
 set autoread            " Automatically read a file changed outside of vim
@@ -64,7 +68,7 @@ set linespace=0                " No extra spaces between rows
 set backspace=indent,eol,start " Backspace for dummies
 set backupdir=~/.vim/backup    " Set the backup directory
 set directory=~/.vim/swap      " Set the swap files directory
-nnoremap <F1> <nop>            " Turn off F1 key
+"nnoremap <F1> <nop>            " Turn off F1 key
 set ttyfast                    " Improved performance
 set lazyredraw                 " Only redraw when needed (better for large macros)
 
@@ -93,13 +97,13 @@ if has('clipboard')
 endif
 
 if has('persistent_undo')
-set undodir=~/.vim/undo/       " Set undo file directory
-set undofile                   " Persistent undo on
-set undolevels=1000            " Maximum number of changes that can be undone
-set undoreload=10000           " Maximum number lines to save for undo on a buffer reload
+  set undodir=~/.vim/undo/       " Set undo file directory
+  set undofile                   " Persistent undo on
+  set undolevels=1000            " Maximum number of changes that can be undone
+  set undoreload=10000           " Maximum number lines to save for undo on a buffer reload
 endif
 
-set pastetoggle=<C-p>          " Toggle paste mode
+set pastetoggle=<F1>          " Toggle paste mode
  
 "===================================================================="
 "======================= [ Mouse / Scrolling ] ======================"
@@ -114,15 +118,23 @@ set spell spelllang=en_us      " Set spell check to English
 hi clear SpellBad              " highlight misspelled words
 hi SpellBad cterm=underline    " set highlight style to underline for misspelled
 
-nnoremap z<Space> z=           " change misspelled word
-nnoremap zn ]s                 " go to next misspelled word
-nnoremap zN [s                 " go to previous misspelled word
+" z=                           " change misspelled word
+" ]s                           " go to next misspelled word
+" [s                           " go to previous misspelled word
 
 "===================================================================="
 "============================= [ Folds ] ============================"
 "===================================================================="
-"set foldcolumn=1
-"set foldmethod=syntax
+"set foldcolumn=1               "
+set foldmethod=indent
+autocmd FileType html set foldmethod=manual
+set foldnestmax=10             " Deepest fold allowed is 10 levels
+set foldlevel=1                " Allow folding at one line
+set nofoldenable               " Do not fold by default
+
+" automatically save and load folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 "===================================================================="
 "======================== [ Tabs / Buffers ] ========================"
@@ -134,12 +146,12 @@ set softtabstop=2
 set shiftwidth=2                       " Number of spaces to use for each step of (auto)indent
 set expandtab                          " Use spaces in place of tabs
 
-set showtabline=1                      " Show tab line when >1 tab open
+set showtabline=1                      " Show tab line when > 1 tab open
 nnoremap <leader>t :tabnew<CR>         " Open a new empty tab
-nnoremap <Space>l :tabnext<CR>         " Move to the next tab
-nnoremap <Space>h :tabprevious<CR>     " Move to the previous tab
-nnoremap <leader>bq :bp <BAR> bd #<CR> " Close the current tab and move to the previous one
-nnoremap <leader>bl :ls<CR>            " Show all open buffers and their status
+nnoremap <Leader>l :tabnext<CR>        " Move to the next tab
+nnoremap <Leader>h :tabprevious<CR>    " Move to the previous tab
+nnoremap <Leader>bq :bp <BAR> bd #<CR> " Close the current tab and move to the previous one
+nnoremap <Leader>bl :ls<CR>            " Show all open buffers and their status
 nnoremap <F10> :bn<CR>                 " Next buffer
 nnoremap <C-F10> :bp<CR>               " Previuous buffer
 
@@ -151,9 +163,37 @@ nnoremap <C-F10> :bp<CR>               " Previuous buffer
 "let &colorcolumn=join(range(82,999),",")
 "let &colorcolumn="81,".join(range(400,999),",")
 
-" Save on escape
+" Save
+nnoremap <Leader>w :w<CR>
+
+" Save As
+nnoremap <Leader>W :w<Space>
+
+" Write All
+nnoremap <Leader>a :wa<CR>
+
+" Write Quit All
+nnoremap <Leader>A :wqa<CR>
+
+" Quit
+nnoremap <Leader>q :q<CR>
+
+" Force Quit
+nnoremap <Leader>Q :q!<CR>
+
+" Edit File
+nnoremap <Leader>e :e<Space>
+  
+" Save with ctrl-c
 inoremap <C-C> <ESC>:w<CR>
 nnoremap <C-C> :w<CR>
+
+" Comment out a line
+nnoremap <Leader>c I/* <ESC>A */<ESC>
+nnoremap <Leader>C 0xxx$xxx
+
+" Clear Highlighting
+nnoremap <Leader>d :nohl<CR>
 
 " Normal moving over wrapped lines
 nnoremap j gj
@@ -163,11 +203,11 @@ nnoremap k gk
 nnoremap J gjzz
 nnoremap K gkzz
 
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
+" Visual shifting without needing to use shift and it does not exit Visual mode
+vnoremap . >gv
+vnoremap , <gv
 
-" gg & G mark location
+" gg & G mark their location with the j register
 nnoremap gg mjgg
 nnoremap G mjG
 
@@ -192,6 +232,9 @@ inoremap <F2> {<Esc>o}<Esc>O
 
 " Auto capitalize WORD
 inoremap <C-u> <esc>mzgUiw`za
+
+" change in between tags
+nnoremap ci< F>lct<
 
 " Helps 'COPE' with your problems
 noremap <F4> :cp<CR>zz
@@ -218,6 +261,20 @@ command! MakeTags !ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 
+" automatically adds the correct shebang to script files
+augroup Shebang
+  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl>\"|$
+  autocmd BufNewFile *.ps 0put =\"%!PS\<nl>\"|$
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl>\"|$
+  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl>\"|$
+  autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
+augroup END
+
+nnoremap tt <S-y>pa/<ESC>O
+"===================================================================="
+"============================ [ Windows ] ==========================="
+"===================================================================="
+
 " resize window
 " 5px
 nnoremap <silent> <C-Right> :vertical resize +5<CR>
@@ -229,33 +286,6 @@ nnoremap <silent> <C-S-Right> :vertical resize +1<CR>
 nnoremap <silent> <C-S-Left> :vertical resize -1<CR>
 nnoremap <silent> <C-S-Up> :resize +1<CR>
 nnoremap <silent> <C-S-Down> :resize -1<CR>
-
-" automatically adds the correct shebang to script files
-augroup Shebang
-  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl>\"|$
-  autocmd BufNewFile *.ps 0put =\"%!PS\<nl>\"|$
-  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl>\"|$
-  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl>\"|$
-  autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
-augroup END
-
-"===================================================================="
-"============================ [ Windows ] ==========================="
-"===================================================================="
-" Show tab line when >1 tab open
-set showtabline=1
-
-" To open a new empty tab
-noremap <leader>t :tabnew<CR>
-
-" Move to the next tab
-noremap <leader>l :tabnext<CR>
-
-" Move to the previous tab
-noremap <leader>h :tabprevious<CR>
-
-" Close the current tab and move to the previous one
-noremap <leader>bq :bp <BAR> bd #<CR>
 
 "===================================================================="
 "============================ [ Buffers ] ==========================="
@@ -298,14 +328,13 @@ inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
 " - ^n for anything specified by the 'complete' option
 
 function! Tab_Or_Complete()
-if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-return "\<C-N>"
-else
-return "\<Tab>"
-endif
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-"inoremap <S-Tab> <Space><Space> " enable regular tabs
 
 "===================================================================="
 "======================= [ File Type Specific ] ====================="
@@ -401,7 +430,7 @@ colorscheme solarized
 " and open files and directories
 "--------------------------------------------------------------------"
 
-nnoremap <C-n> :NERDTreeToggle<CR> " toggle NERDTree with C-n
+nnoremap <Leader>f :NERDTreeToggle<CR> " toggle NERDTree with C-n
 
 " closes NERDTree if it is the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
