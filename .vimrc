@@ -193,9 +193,10 @@ nnoremap <C-C> :w<CR>
 "nnoremap <Leader>C 0xxx$xxx
 
 " Generate cout from comment
-map <Leader>o 0/\/<CR>velcstd::cout << "<esc>$a\n";<esc>:nohl<CR><C-l>
+map <Leader>o ^cf<Space>std::cout << <esc>A << std::endl;<esc>:nohl<CR>
+
 " Turn cout into comment
-map <Leader>O 0/std<CR>v5ec// <esc>$v3hx:nohl<CR><C-l>
+map <Leader>O 0vf<;c//<esc>$vF<;dx
 
 " Clear Highlighting
 nnoremap <Leader>d :nohl<CR>

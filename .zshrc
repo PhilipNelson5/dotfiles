@@ -55,7 +55,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(colored-man-pages autojump colorize extract)
 
 DISABLE_UPDATE_PROMPT=true
 
@@ -97,7 +97,7 @@ export EDITOR='vim'
 
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
-alias x='exit'                       # exits terminal
+alias zx='exit'                       # exits terminal
 
 # dotfile shortcuts
 alias vimrc='vim ~/.vimrc'           # change vimrc
@@ -121,6 +121,7 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias color='colorize'
 
 alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
 
@@ -128,4 +129,9 @@ alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow enviro
 alias update='~/scripts/update.sh'        # update packages
 alias push='~/scripts/push.sh'            # push to the current git branch
 
+[ -z "$PS1" ] && return # only for interactive mode
+
 function chpwd() ls                  # always ls after changing directories
+
+# added by travis gem
+[ -f /home/philip/.travis/travis.sh ] && source /home/philip/.travis/travis.sh
