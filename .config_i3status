@@ -1,0 +1,83 @@
+general {
+  colors = true
+  interval = 1
+  colors = true
+  color_good = "#36E592"
+  color_degraded = "#CE9726"
+  color_bad = "#CE4B4F"
+  color_separator = "#B3BEFF"
+  interval = 5
+}
+
+order += "ethernet eth0"
+order += "wireless wlan0"
+order += "wireless wlan1"
+order += "load"
+order += "cpu_usage"
+#order += "cpu_temperature 0"
+order += "disk /"
+order += "battery 0"
+#order += "volume master"
+order += "time"
+
+battery 0 {
+  format = "%status %percentage %remaining %emptytime"
+  format_down = "No battery"
+  status_chr = " "
+  status_bat = " "
+  status_unk = " "
+  status_full = " "
+  path = "/sys/class/power_supply/BAT%d/uevent"
+  low_threshold = 10
+  last_full_capacity = true
+  hide_seconds = true
+}
+
+ethernet eth0 {
+# if you use %speed, i3status requires root privileges
+  format_up = " eth0   %quality  %essid   %bitrate  %ip"
+  format_down = ""
+}
+
+wireless wlan0 {
+  format_up = "wlan0   %quality  %essid   %bitrate  %ip"
+  # format_down = "wlan0 "
+  format_down = ""
+}
+
+wireless wlan1 {
+  format_up = "wlan1  %quality  %essid   %bitrate  %ip"
+  # format_down = "wlan1 "
+  format_down = ""
+}
+
+time {
+  format = " %a, %d %b %H:%M"
+}
+
+load {
+  format = " %1min %5min %15min"
+}
+
+cpu_usage {
+  format = " %usage"
+}
+
+cpu_temperature 0 {
+  format = "T: %degrees °C"
+  path = "/sys/devices/platform/coretemp.0/temp1_input"
+
+}
+
+disk "/" {
+  #format = " %free/%avail"
+  format = " %avail/%free"
+}
+
+volume master {
+  format = " %volume"
+  format_muted = " %volume"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+}
