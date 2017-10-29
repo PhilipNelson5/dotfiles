@@ -28,6 +28,10 @@ echo "i3"
 cp ~/.i3/config ~/dotfiles/.config_i3
 sleep .05
 
+echo "i3status"
+cp ~/.config/i3status/config ~/dotfiles/.config_i3status
+sleep .05
+
 echo "TERMITE"
 cp ~/.config/termite/config ~/dotfiles/.config_termite
 sleep .05

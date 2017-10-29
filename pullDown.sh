@@ -14,6 +14,7 @@ cp ~/dotfiles/.bash_aliases ~/.bash_aliases
 cp ~/dotfiles/.clang-format ~/.clang-format
 cp ~/dotfiles/.compton.conf ~/.conf/compton.conf 
 cp ~/dotfiles/.config_i3 ~/.i3/config
+cp ~/dotfiles/.config_i3status ~/.config/i3status/config
 cp ~/dotfiles/.config_termite ~/.config/termite/config
 cp ~/dotfiles/.gitconfig ~/.gitconfig
 cp ~/dotfiles/.tmux.conf ~/.tmux.conf
