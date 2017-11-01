@@ -95,6 +95,8 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+[ -z "$PS1" ] && return # only for interactive mode
+
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
 alias zx='exit'                       # exits terminal
@@ -129,9 +131,11 @@ alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow enviro
 alias update='~/scripts/update.sh'        # update packages
 alias push='~/scripts/push.sh'            # push to the current git branch
 
-[ -z "$PS1" ] && return # only for interactive mode
-
 function chpwd() ls                  # always ls after changing directories
+
+function trash() { mv $1 /home/philip/.local/share/Trash/files/ }
+function emptytrash() { rm -rf /home/philip/.local/share/Trash/files/* }
+
 
 # added by travis gem
 [ -f /home/philip/.travis/travis.sh ] && source /home/philip/.travis/travis.sh
