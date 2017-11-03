@@ -319,7 +319,7 @@ set wildignore+=*\\tmp\\*,*.exe            " Windows
 
 filetype plugin on
 set dictionary=/usr/share/dict/words
-set complete=.,w,b,u,t,i
+set complete=.,w,b,u,t,i,d
 set completeopt=menu,preview
 set omnifunc=syntaxcomplete#Complete
 
