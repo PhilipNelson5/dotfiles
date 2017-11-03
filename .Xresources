@@ -135,8 +135,8 @@ URxvt.pointerBlank:         true
 
 !! yellow dark/light
 *color3:                S_yellow
-    !! S_base00
-*color11:               S_yellow
+    !! S_base00 vim line numbers and split dividers
+*color11:               S_base01
 
 !! blue dark/light
 *color4:                S_blue
