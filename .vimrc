@@ -193,10 +193,10 @@ nnoremap <C-C> :w<CR>
 "nnoremap <Leader>C 0xxx$xxx
 
 " Generate cout from comment
-map <Leader>o ^cf<Space>std::cout << <esc>A << std::endl;<esc>:nohl<CR>
+nnoremap <Leader>o ^cf<Space>std::cout << <esc>A << std::endl;<esc>:nohl<CR>
 
 " Turn cout into comment
-map <Leader>O 0vf<;c//<esc>$vF<;dx
+nnoremap <Leader>O 0vf<;c//<esc>$vF<;dx
 
 " Clear Highlighting
 nnoremap <Leader>d :nohl<CR>
@@ -326,7 +326,8 @@ set omnifunc=syntaxcomplete#Complete
 " Enable j & k to work in drop down auto complete lists
 inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
 inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
-inoremap <expr> <Tab> ((pumvisible())?(" "):("<C-P>"))
+inoremap <expr> <Tab> ((pumvisible())?("\<C-n>"):(" "))
+"inoremap <expr> <Tab> ((pumvisible())?(" "):("\<C-n>"))
 
 " - ^x^n for JUST this file
 " - ^x^f for file names (works with our path trick!)

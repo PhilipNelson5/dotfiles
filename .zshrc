@@ -62,7 +62,7 @@ DISABLE_UPDATE_PROMPT=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+export BROWSER="google-chrome-stable"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
