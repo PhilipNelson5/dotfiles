@@ -2,6 +2,7 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/home/philip/node_modules/.bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/philip/.oh-my-zsh
@@ -96,10 +97,13 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -z "$PS1" ] && return # only for interactive mode
+# vim style!
+alias :e='vim'                       # edit a file
+alias :q='exit'                      # close the terminal
 
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
-alias zx='exit'                       # exits terminal
+alias zx='exit'                      # exits terminal
 
 # dotfile shortcuts
 alias vimrc='vim ~/.vimrc'           # change vimrc
@@ -112,6 +116,7 @@ alias cs='cd'                        # fix my mistakes
 alias maek='make'                    # fix my mistakes
 
 alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
+alias plz='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
 alias python='python3'               # default to python3
 alias untar='tar -xzvf'              # untar a tarball 
@@ -128,8 +133,10 @@ alias color='colorize'
 alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
 
 # shortcuts to some scripts
-alias update='~/scripts/update.sh'        # update packages
-alias push='~/scripts/push.sh'            # push to the current git branch
+alias update='~/scripts/update.sh'   # update packages
+alias push='~/scripts/push.sh'       # push to the current git branch
+
+alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
 
 function chpwd() ls                  # always ls after changing directories
 

@@ -1,5 +1,5 @@
 " Welcome to my VIM configuration! This has been a work in progress
-" since the summer of 2016 when I started my journey to learn VIM. 
+" since the summer of 2016 when I started my journey to learn VIM.
 " I have learned a lot by reading other peoples' vimrcs and I hope
 " you can learn something from mine! Happy vimming!
 
@@ -85,7 +85,7 @@ set splitright
 " set minimum height of a window
 set winminheight=0
 
-set linebreak "Vim will wrap long lines at a character in 'breakat' 
+set linebreak "Vim will wrap long lines at a character in 'breakat'
 " rather than at the last character that fits on the screen
 
 set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
@@ -104,7 +104,7 @@ if has('persistent_undo')
 endif
 
 set pastetoggle=<F1>          " Toggle paste mode
- 
+
 "===================================================================="
 "======================= [ Mouse / Scrolling ] ======================"
 "===================================================================="
@@ -142,12 +142,12 @@ autocmd BufWinEnter *.* silent loadview
 set autoindent                         " Copy indent from current line when starting a new line
 filetype plugin indent on
 set tabstop=2                          " Number of spaces that a <Tab> in the file counts for
-set softtabstop=2 
+set softtabstop=2
 set shiftwidth=2                       " Number of spaces to use for each step of (auto)indent
 set expandtab                          " Use spaces in place of tabs
 
 set showtabline=1                      " Show tab line when > 1 tab open
-nnoremap <leader>t :tabnew<CR>         " Open a new empty tab
+nnoremap <leader>n :tabnew<CR>         " Open a new empty tab
 nnoremap <Leader>l :tabnext<CR>        " Move to the next tab
 nnoremap <Leader>h :tabprevious<CR>    " Move to the previous tab
 nnoremap <Leader>bq :bp <BAR> bd #<CR> " Close the current tab and move to the previous one
@@ -160,8 +160,10 @@ nnoremap <C-F10> :bp<CR>               " Previuous buffer
 "===================================================================="
 
 "draw line at the 81st column
-"let &colorcolumn=join(range(82,999),",")
-"let &colorcolumn="81,".join(range(400,999),",")
+let &colorcolumn=join(range(82,999),",")
+let &colorcolumn="81,".join(range(400,999),",")
+" Remove trailing white space
+nnoremap <Leader>s :%s/\s\+$//<Enter>
 
 " Save
 nnoremap <Leader>w :w<CR>
@@ -183,7 +185,7 @@ nnoremap <Leader>Q :q!<CR>
 
 " Edit File
 nnoremap <Leader>e :e<Space>
-  
+
 " Save with ctrl-c
 inoremap <C-C> <ESC>:w<CR>
 nnoremap <C-C> :w<CR>
@@ -218,7 +220,7 @@ nnoremap gg mjgg
 nnoremap G mjG
 
 " Center the screen after jumping to a mark
-nnoremap <expr> ' printf('`%c zz',getchar()) 
+nnoremap <expr> ' printf('`%c zz',getchar())
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
@@ -307,7 +309,7 @@ nnoremap <C-F10> :bp<CR>
 "======================== [ Tab Completion ] ========================"
 "===================================================================="
 "Search into all sub-folders and tab-complete file-related tasks
-set path+=**	
+set path+=**
 
 "settings for wildmenu
 set wildmenu
@@ -355,8 +357,8 @@ augroup END
 
 augroup configgroup
 autocmd!
-autocmd FileType python nmap <F3> :w<CR> :!python '%:t'<CR>
-autocmd FileType python imap <F3> <ESC>:w<CR> :!python '%:t'<CR>
+autocmd FileType python nmap <F3> :w<CR> :!python2 '%:t'<CR>
+autocmd FileType python imap <F3> <ESC>:w<CR> :!python2 '%:t'<CR>
 
 augroup END
 "===================================================================="
@@ -406,6 +408,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'JuliaEditorSupport/julia-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
@@ -441,6 +445,13 @@ colorscheme solarized
 "call togglebg#map("<F8>") " Toggle light and dark background
 
 "--------------------------------------------------------------------"
+"----------------------------- [ TABLES ] ---------------------------"
+"--------------------------------------------------------------------"
+noremap <leader>tm :TableModeToggle<CR>
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
+"--------------------------------------------------------------------"
 "----------------------------- [ GOYO ] -----------------------------"
 " Distraction-free writing in Vim. Setup to remove all unnecessary
 " distractions while writing in markdown
@@ -468,7 +479,7 @@ augroup END
 
 "--------------------------------------------------------------------"
 "--------------------------- [ Tag Bar ] ----------------------------"
-" Provides an easy way to browse the tags of the current file 
+" Provides an easy way to browse the tags of the current file
 " and get an overview of its structure.
 "--------------------------------------------------------------------"
 
@@ -483,7 +494,7 @@ nnoremap <C-u> :UndotreeToggle<cr>
 
 "--------------------------------------------------------------------"
 "---------------------------- [ Octol ] -----------------------------"
-" Additional Vim syntax highlighting for C++ 
+" Additional Vim syntax highlighting for C++
 "--------------------------------------------------------------------"
 
 let g:cpp_class_scope_highlight = 1

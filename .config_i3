@@ -53,7 +53,7 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 300
 for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
-exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e R -q
+exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e julia -q
 
 ##################################################
 #                 Basic Bindings                 #
@@ -102,7 +102,7 @@ bindsym $mod+h               focus left
 bindsym $mod+Shift+h         move left 30
 
 bindsym $mod+i               exec $term -e htop
-bindsym $mod+Shift+i         resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+i         resize shrink height 5 px or 5 ppt
 
 bindsym $mod+j               focus down
 bindsym $mod+Shift+j         move down 30
@@ -120,7 +120,7 @@ bindsym $mod+n               exec $term -e newsboat
 #bindsym $mod+Shift+n         exec $term -e newsboat
 
 #bindsym $mod+o               exec --no-startup-id $beg
-bindsym $mod+Shift+o         resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+o         resize grow width 5 px or 5 ppt
 
 bindsym $mod+p               exec $pause
 bindsym $mod+Shift+p         exec mypaint
@@ -140,7 +140,7 @@ bindsym $mod+Ctrl+t          exec --no-startup-id compton -b
 #bindsym $mod+Shift+t
 
 bindsym $mod+u               [instance="dropdown"] scratchpad show; move position center
-bindsym $mod+Shift+u         resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+u         resize grow height 5 px or 5 ppt
 
 bindsym $mod+v               split vertical
 bindsym $mod+Shift+v         exec projectM-pulseaudio
@@ -153,7 +153,7 @@ bindsym $mod+Ctrl+x          --release exec --no-startup-id xkill
 bindsym $mod+Shift+x         exec sudo shutdown now
 
 bindsym $mod+y               exec $term -e calcurse
-bindsym $mod+Shift+y         resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+y         resize shrink width 5 px or 5ppt
 
 bindsym $mod+z               gaps outer current plus 5
 bindsym $mod+Shift+z         gaps outer current minus 5

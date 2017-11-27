@@ -52,7 +52,7 @@ URxvt.allow_bold:           true
 URxvt.letterSpace:          -1.5
 
 !! Scrollbar
-URxvt.scrollBar:            false	
+URxvt.scrollBar:            false
 !! Scrollbar Style
 ! URxvt.scrollStyle:          rxvt
 !! scrollbar width
