@@ -76,6 +76,7 @@ export BROWSER="google-chrome-stable"
 #   export EDITOR='mvim'
 # fi
 export EDITOR='vim'
+bindkey -v
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,6 +109,7 @@ alias zx='exit'                      # exits terminal
 # dotfile shortcuts
 alias vimrc='vim ~/.vimrc'           # change vimrc
 alias zshrc='vim ~/.zshrc'           # change zshrc
+alias i3rc='vim ~/.i3/config'        # change i3 config
 alias Xrec='vim ~/.Xresources'       # change Xresources
 
 # fix mistakes
@@ -116,10 +118,10 @@ alias cs='cd'                        # fix my mistakes
 alias maek='make'                    # fix my mistakes
 
 alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
-alias plz='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
+alias plz='sudo $(fc -ln -1)'        # run last command with elevated privileges if you ask nicely
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
 alias python='python3'               # default to python3
-alias untar='tar -xzvf'              # untar a tarball 
+alias untar='tar -xzvf'              # untar a tarball
 
 # colors
 alias ls='ls --color=auto'
@@ -130,13 +132,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias color='colorize'
 
-alias tensorflow='source ~/tensorflow/bin/activate' # activate tensorflow environment
-
 # shortcuts to some scripts
 alias update='~/scripts/update.sh'   # update packages
 alias push='~/scripts/push.sh'       # push to the current git branch
 
 alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
+alias image='viewnior'               # for opening images
 
 function chpwd() ls                  # always ls after changing directories
 
@@ -148,28 +149,43 @@ function emptytrash() { rm -rf /home/philip/.local/share/Trash/files/* }
 [ -f /home/philip/.travis/travis.sh ] && source /home/philip/.travis/travis.sh
 
 colors() {
-	local fgc bgc vals seq0
+  local fgc bgc vals seq0
 
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+  printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+  printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+  printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+  printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
+  # foreground colors
+  for fgc in {30..37}; do
+    # background colors
+    for bgc in {40..47}; do
+      fgc=${fgc#37} # white
+      bgc=${bgc#40} # black
 
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
+      vals="${fgc:+$fgc;}${bgc}"
+      vals=${vals%%;}
 
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
+      seq0="${vals:+\e[${vals}m}"
+      printf "  %-9s" "${seq0:-(default)}"
+      printf " ${seq0}TEXT\e[m"
+      printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+    done
+    echo; echo
+  done
+}
+
+big() {
+  urxvt -fn "xft:Noto\ Mono\ for\ Powerline:pixlesize=$1" &
+}
+
+groot(){
+  if  [[ -e .git ]]; then
+    return
+  elif [[ $(pwd) == $HOME ]]; then
+    return
+  else
+    cd ..
+    groot
+  fi
 }

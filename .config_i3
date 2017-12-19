@@ -12,6 +12,7 @@ set $mod Mod1
 set $term urxvt
 set $flash --no-startup-id bash ~/.config/scripts/flash.sh
 set $browser google-chrome-stable
+set $image gimp
 
 # Variables for up/down/left/right
 # If you want to change your preferences it will change everywhere
@@ -101,7 +102,7 @@ bindsym $mod+Shift+g         gaps inner current set 0; gaps outer current set 0
 bindsym $mod+h               focus left
 bindsym $mod+Shift+h         move left 30
 
-bindsym $mod+i               exec $term -e htop
+bindsym $mod+i               exec $image
 bindsym $mod+Shift+i         resize shrink height 5 px or 5 ppt
 
 bindsym $mod+j               focus down
@@ -122,7 +123,7 @@ bindsym $mod+n               exec $term -e newsboat
 #bindsym $mod+o               exec --no-startup-id $beg
 bindsym $mod+Shift+o         resize grow width 5 px or 5 ppt
 
-bindsym $mod+p               exec $pause
+bindsym $mod+p               exec $term -e htop
 bindsym $mod+Shift+p         exec mypaint
 
 #bindsym $mod+q               kill
@@ -384,7 +385,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 15 -locker blurlock
+# exec --no-startup-id xautolock -time 15 -locker blurlock
 exec_always --no-startup-id fix_xcursor
 
 ##################################################

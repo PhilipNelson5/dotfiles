@@ -43,7 +43,7 @@ autocmd!
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-"===================================================================="
+"-===================================================================="
 "========================== [ The Basics ] =========================="
 "===================================================================="
 set ruler               " Turns the ruler on
@@ -163,7 +163,7 @@ nnoremap <C-F10> :bp<CR>               " Previuous buffer
 let &colorcolumn=join(range(82,999),",")
 let &colorcolumn="81,".join(range(400,999),",")
 " Remove trailing white space
-nnoremap <Leader>s :%s/\s\+$//<Enter>
+nnoremap <Leader>s mz:%s/\s\+$//<Enter>'zzz
 
 " Save
 nnoremap <Leader>w :w<CR>
@@ -450,6 +450,11 @@ colorscheme solarized
 noremap <leader>tm :TableModeToggle<CR>
 let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='
+
+"--------------------------------------------------------------------"
+"----------------------------- [ TABLES ] ---------------------------"
+"--------------------------------------------------------------------"
+let g:default_julia_version = "0.6.1"
 
 "--------------------------------------------------------------------"
 "----------------------------- [ GOYO ] -----------------------------"
