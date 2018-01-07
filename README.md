@@ -7,10 +7,10 @@ My personal config files and setup. Take a look and hopefully get some inspirati
 | .bash_aliases | BASH Aliases | `~/` |
 | .clang-format | Clang Format | `~/` |
 | .compton.conf | Compton composite manager| `~/.conf/` |
-| .config_git | git source control | `~/.git/` |
 | .config_i3 | i3 window manager | `~/.i3/` |
 | .config_i3status | i3 status bar | `~/.config/i3status/` |
 | .config_termite | termite terminal | `~/.config/termite/` |
+| .gitconfig | git source control | `~/.git/` |
 | .tmux.conf | tmux terminal multiplexor | `~/` |
 | .vimrc | vim text editor | `~/` |
 | .zshrc | z shell | `~/` |
