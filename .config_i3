@@ -189,7 +189,7 @@ bindsym $mod+minus           scratchpad show
 
 bindsym F11                  fullscreen toggle
 
-#bindsym $mod+F1 
+#bindsym $mod+F1
 bindsym $mod+F2              exec $browser
 bindsym $mod+F3              exec slack
 bindsym $mod+F4              exec pcmanfm

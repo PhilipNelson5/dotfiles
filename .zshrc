@@ -77,6 +77,7 @@ export BROWSER="google-chrome-stable"
 # fi
 export EDITOR='vim'
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -98,6 +99,7 @@ bindkey -v
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -z "$PS1" ] && return # only for interactive mode
+
 # vim style!
 alias :e='vim'                       # edit a file
 alias :q='exit'                      # close the terminal
@@ -107,46 +109,47 @@ alias c='clear'                      # clear terminal
 alias zx='exit'                      # exits terminal
 
 # dotfile shortcuts
+alias Xrec='vim ~/.Xresources'       # change Xresources
+alias i3rc='vim ~/.i3/config'        # change i3 config
 alias vimrc='vim ~/.vimrc'           # change vimrc
 alias zshrc='vim ~/.zshrc'           # change zshrc
-alias i3rc='vim ~/.i3/config'        # change i3 config
-alias Xrec='vim ~/.Xresources'       # change Xresources
 
 # fix mistakes
-alias sl='ls'                        # fix my mistakes
 alias cs='cd'                        # fix my mistakes
 alias maek='make'                    # fix my mistakes
+alias sl='ls'                        # fix my mistakes
 
 alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
 alias plz='sudo $(fc -ln -1)'        # run last command with elevated privileges if you ask nicely
-alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
-alias python='python3'               # default to python3
-alias untar='tar -xzvf'              # untar a tarball
+alias pls='sudo $(fc -ln -1)'        # run last command with elevated privileges if you ask nicely
 
 # colors
-alias ls='ls --color=auto'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias color='colorize'
+alias dir='dir --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias vdir='vdir --color=auto'
 
 # shortcuts to some scripts
 alias update='~/scripts/update.sh'   # update packages
 alias push='~/scripts/push.sh'       # push to the current git branch
 
-alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
+# some program shortcuts
 alias image='viewnior'               # for opening images
+alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
+alias python='python2'               # default to python2
+alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
+alias untar='tar -xzvf'              # untar a tarball
 
-function chpwd() ls                  # always ls after changing directories
+function chpwd() {                   # always ls after changing directories
+  emulate -L zsh
+  ls
+}
 
 function trash() { mv $1 /home/philip/.local/share/Trash/files/ }
 function emptytrash() { rm -rf /home/philip/.local/share/Trash/files/* }
-
-
-# added by travis gem
-[ -f /home/philip/.travis/travis.sh ] && source /home/philip/.travis/travis.sh
 
 colors() {
   local fgc bgc vals seq0
@@ -175,11 +178,10 @@ colors() {
   done
 }
 
-big() {
-  urxvt -fn "xft:Noto\ Mono\ for\ Powerline:pixlesize=$1" &
-}
+big() { urxvt -fn "xft:Noto\ Mono\ for\ Powerline:pixlesize=$1" & }
 
-groot(){
+groot() {                            # go to the root directory of a git repo
+  emulate -L zsh
   if  [[ -e .git ]]; then
     return
   elif [[ $(pwd) == $HOME ]]; then
@@ -189,3 +191,6 @@ groot(){
     groot
   fi
 }
+
+# added by travis gem
+[ -f /home/philip/.travis/travis.sh ] && source /home/philip/.travis/travis.sh

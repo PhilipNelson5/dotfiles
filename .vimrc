@@ -126,15 +126,15 @@ hi SpellBad cterm=underline    " set highlight style to underline for misspelled
 "============================= [ Folds ] ============================"
 "===================================================================="
 "set foldcolumn=1               "
-set foldmethod=indent
-autocmd FileType html set foldmethod=manual
-set foldnestmax=10             " Deepest fold allowed is 10 levels
-set foldlevel=1                " Allow folding at one line
-set nofoldenable               " Do not fold by default
+"set foldmethod=indent
+"autocmd FileType html set foldmethod=manual
+"set foldnestmax=10             " Deepest fold allowed is 10 levels
+"set foldlevel=1                " Allow folding at one line
+"set nofoldenable               " Do not fold by default
 
 " automatically save and load folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+"autocmd BufWinLeave *.* mkview
+"autocmd BufWinEnter *.* silent loadview
 
 "===================================================================="
 "======================== [ Tabs / Buffers ] ========================"
@@ -443,6 +443,7 @@ let g:solarized_termcolors=16
 set background=dark
 colorscheme solarized
 "call togglebg#map("<F8>") " Toggle light and dark background
+au BufRead,BufNewFile .Xresources set filetype=xdefaults
 
 "--------------------------------------------------------------------"
 "----------------------------- [ TABLES ] ---------------------------"
