@@ -410,14 +410,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'suan/vim-instant-markdown'
+"Plug 'suan/vim-instant-markdown'
 Plug 'tpope/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -463,25 +463,25 @@ let g:default_julia_version = "0.6.1"
 " distractions while writing in markdown
 "--------------------------------------------------------------------"
 
-function! s:auto_goyo()
-if &ft == 'markdown' && winnr('$') == 1
-Goyo 120
-elseif exists('#goyo')
-Goyo!
-endif
-endfunction
-
-function! s:goyo_leave()
-if winnr('$') < 2
-silent! :q
-endif
-endfunction
-
-augroup goyo_markdown
-autocmd!
-autocmd	BufNewFile,BufRead * call	s:auto_goyo()
-autocmd! User	GoyoLeave	nested call	s:goyo_leave()
-augroup END
+"function! s:auto_goyo()
+"if &ft == 'markdown' && winnr('$') == 1
+"Goyo 120
+"elseif exists('#goyo')
+"Goyo!
+"endif
+"endfunction
+"
+"function! s:goyo_leave()
+"if winnr('$') < 2
+"silent! :q
+"endif
+"endfunction
+"
+"augroup goyo_markdown
+"autocmd!
+"autocmd	BufNewFile,BufRead * call	s:auto_goyo()
+"autocmd! User	GoyoLeave	nested call	s:goyo_leave()
+"augroup END
 
 "--------------------------------------------------------------------"
 "--------------------------- [ Tag Bar ] ----------------------------"
