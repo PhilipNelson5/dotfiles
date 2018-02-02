@@ -5,6 +5,9 @@
 export PATH=$PATH:/home/philip/node_modules/.bin
 export PATH=$PATH:/home/philip/.gem/ruby/2.5.0/bin
 
+# Path to Android SKD
+export ANDROID_HOME=/opt/android
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/philip/.oh-my-zsh
 

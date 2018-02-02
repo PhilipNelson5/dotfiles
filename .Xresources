@@ -49,7 +49,7 @@ URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=12:antialia
 !URxvt.font:                 xft:Inconsolata\ for\ Powerline:size=11:antialias=true
 !URxvt*boldFont:             xft:Inconsolata\ Bold\ for\ Powerline:size=11:antialias=true
 URxvt.allow_bold:           true
-URxvt.letterSpace:          -1.5
+URxvt.letterSpace:          -.5
 
 !! Scrollbar
 URxvt.scrollBar:            false

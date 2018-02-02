@@ -41,7 +41,9 @@ cp ~/.tmux.conf ~/dotfiles/.tmux.conf
 sleep .05
 
 echo "VIM"
-cp ~/.vimrc ~/dotfiles/.vimrc
+cp ~/.vim/config/* ./.vim/config
+cp ~/.vim/snippits/* ./.vim/snippits
+cp ~/.vim/colors/* ./.vim/colors
 sleep .05
 
 echo "URXVT"

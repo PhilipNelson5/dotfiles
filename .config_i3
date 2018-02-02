@@ -114,7 +114,8 @@ bindsym $mod+Shift+k         move up 30
 bindsym $mod+l               focus right
 bindsym $mod+Shift+l         move right 30
 
-bindsym $mod+m               exec $music
+#bindsym $mod+m               exec $music
+bindsym $mod+m               exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=bikioccmkafdpakkkcpdbppfkghcmihk
 bindsym $mod+Shift+m         exec $mute
 
 bindsym $mod+n               exec $term -e newsboat

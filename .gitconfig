@@ -1,8 +1,11 @@
 [user]
-	email = PhilipNelson5@gmail.com
-	name = Philip Nelson
+  email = PhilipNelson5@gmail.com
+  name = Philip Nelson
 [log]
-	decorate = true
+  decorate = true
 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+  fresh = commit -am
+[color]
+	ui = auto
