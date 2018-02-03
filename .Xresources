@@ -1,79 +1,75 @@
-!!------------------------------------------------------------------------------
-!! Load Settings
-!! xrdb ~/.Xresources
-!!------------------------------------------------------------------------------
+!!----------------------------------------------------------------------------!!
+!! Load Settings                                                              !!
+!! xrdb ~/.Xresources                                                         !!
+!!----------------------------------------------------------------------------!!
 
-!-------------------------------------------------------------------------------
-! Xft settings
-!-------------------------------------------------------------------------------
+!!----------------------------------------------------------------------------!!
+!! Xft settings                                                               !!
+!!----------------------------------------------------------------------------!!
 
-Xft.dpi:                    96
-Xft.antialias:              true
-Xft.rgba:                   rgb
-Xft.hinting:                true
-Xft.hintstyle:              hintslight
-URxvt.buffered:             true
+Xft*antialias:                    true
+Xft*autohint:                     false
+Xft*dpi:                          96
+Xft*hinting:                      true
+Xft*hintstyle:                    hintslight
+Xft*lcdfilter:                    lcddefault
+Xft*rgba:                         rgb
 
-!!------------------------------------------------------------------------------
-!! URxvt settings
-!!------------------------------------------------------------------------------
-URxvt.termName:             rxvt-unicode
-URxvt.depth:                32
-URxvt.geometry:             90x30
-URxvt.borderless: 1
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
-URxvt.loginShell:           true
-URxvt.saveLines:            10000
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
-Urxvt.secondaryScroll:      true    # Enable Shift-PageUp/Down in screen
+!!----------------------------------------------------------------------------!!
+!! URxvt settings                                                             !!
+!!----------------------------------------------------------------------------!!
 
-!! Transparency / Shading
-URxvt.transparent:          false
-!URxvt*.shading:             90
-!URxvt.tintColor:            #586e75
+URxvt*borderless:                 true
+URxvt*buffered:                   true
+URxvt*geometry:                   90x30
+URxvt*internalBorder:             0
+URxvt*lineSpace:                  0
+URxvt*loginShell:                 true
+URxvt*saveLines:                  10000
+URxvt*termName:                   rxvt-unicode
+Urxvt*secondaryScroll:            true      # Enable Shift-PageUp/Down in screen
 
-!! Fading
-URxvt.fading:               15
-URxvt*fadeColor:            #002b36
+URxvt*depth:                      32
+URxvt*background:                 [80]#000000
+URxvt*scrollBar:                  false
+URxvt*mouseWheelScrollPage:       true
+URxvt*cursorBlink:                true
+URxvt*foreground:                 grey
 
-!! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
+! for 'fake' transparency (without Compton) uncomment the following three lines
+! URxvt*inheritPixmap:            true
+! URxvt*transparent:              true
+! URxvt*shading:                  138
 
-!! Font
-URxvt*font:                 xft:Noto\ Mono\ for\ Powerline:pixelsize=12:antialias=true, fontawesome-webfont
-!URxvt*font:                 xft:Roboto \ Mono\ for\ Powerline:pixelsize=12:antialias=true
-!URxvt.font:                 xft:Inconsolata\ for\ Powerline:size=11:antialias=true
-!URxvt*boldFont:             xft:Inconsolata\ Bold\ for\ Powerline:size=11:antialias=true
-URxvt.allow_bold:           true
-URxvt.letterSpace:          -.5
+!!----------------------------------------------------------------------------!!
+!! Font                                                                       !!
+!!----------------------------------------------------------------------------!!
 
-!! Scrollbar
-URxvt.scrollBar:            false
-!! Scrollbar Style
-! URxvt.scrollStyle:          rxvt
-!! scrollbar width
-! URxvt*thickness:            5
-!! scrollbar color
-! URxvt*scrollColor:          #1E1E1E
-!! scrollbar trough area color
-! URxvt*troughColor:          #333333
-!! scrollbar without a trough
-! URxvt*scrollBar_floating:   false
-!! scrollbar to the right
-! URxvt*scrollBar_right:      true
+URxvt*font:                       xft:Noto\ Mono\ for\ Powerline\
+                                   :pixelsize=12\
+                                   :antialias=true,\
+                                   fontawesome-webfont
+URxvt*allow_bold:                 true
 
-!! Perl extensions
-URxvt.perl-ext-common:      default,matcher
-URxvt.urlLauncher:          google-chrome-stable
-URxvt.matcher.button:       1
+!!----------------------------------------------------------------------------!!
+!! Perl                                                                       !!
+!!----------------------------------------------------------------------------!!
 
-!! Pointer
-URxvt.pointerBlank:         true
+URxvt.matcher.button:             1
+URxvt.perl-ext-common:            default,matcher,solarized
+URxvt.urlLauncher:                google-chrome-stable
 
+!!----------------------------------------------------------------------------!!
+!! Color Scheme  https://github.com/BobuSumisu/urxvt-solarized                !!
+!!----------------------------------------------------------------------------!!
+
+URxvt.keysym.Mod4-c:              perl:solarized:toggle
+URxvt.solarized.default:          dark
+
+!! This is my old color scheme, worked great, the new one lets you toggle
+!     between light and dark which was preferred
+!     I left one color overwritten because the new scheme was not coloring
+!     color 12 correctly
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 
 !! SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
@@ -113,45 +109,215 @@ URxvt.pointerBlank:         true
 #define S_green         #859900
 
     !! Background color
-*background:            S_base03
+!*background:            S_base03
     !! File names, user@host, highlight
-*foreground:            S_base2
-*cursorColor:           S_base1
-*pointerColorBackground:S_base01
-*pointerColorForeground:S_base1
-
-!! black dark/light
-*color0:                S_base02
-*color8:                S_base03
-
-!! red dark/light
-*color1:                S_red
-*color9:                S_orange
-
-!! green dark/light
-*color2:                S_green
-    !! S_base01 comments
-*color10:               S_base00
-
-!! yellow dark/light
-*color3:                S_yellow
-    !! S_base00 vim line numbers and split dividers
-*color11:               S_base01
-
-!! blue dark/light
-*color4:                S_blue
-    !! S_base0 folder names
+!*foreground:            S_base2
+!*cursorColor:           S_base1
+!*pointerColorBackground:S_base01
+!*pointerColorForeground:S_base1
+!
+!!! black dark/light
+!*color0:                S_base02
+!*color8:                S_base03
+!
+!!! red dark/light
+!*color1:                S_red
+!*color9:                S_orange
+!
+!!! green dark/light
+!*color2:                S_green
+!    !! S_base01 comments
+!*color10:               S_base00
+!
+!!! yellow dark/light
+!*color3:                S_yellow
+!    !! S_base00 vim line numbers and split dividers
+!*color11:               S_base01
+!
+!!! blue dark/light
+!*color4:                S_blue
+!    !! S_base0 folder names
 *color12:               S_base1
+!
+!!! magenta dark/light
+!*color5:                S_magenta
+!*color13:               S_violet
+!
+!!! cyan dark/light
+!*color6:                S_cyan
+!    !! S_base1
+!*color14:               S_cyan
+!
+!!! white dark/light
+!*color7:                S_base2
+!*color15:               S_base3
 
-!! magenta dark/light
-*color5:                S_magenta
-*color13:               S_violet
 
-!! cyan dark/light
-*color6:                S_cyan
-    !! S_base1
-*color14:               S_cyan
 
-!! white dark/light
-*color7:                S_base2
-*color15:               S_base3
+!!----------------------------------------------------------------------------!!
+!! Default i3 Colors                                                          !!
+!!----------------------------------------------------------------------------!!
+
+!!! black dark/light
+!*color0:                          #232423
+!*color8:                          #282928
+!
+!!! red dark/light
+!*color1:                          #BA2922
+!*color9:                          #CC372C
+!
+!!! green dark/light
+!*color2:                          #7E807E
+!*color10:                         #8D8F8D
+!
+!!! yellow dark/light
+!*color3:                          #4C4F4D
+!*color11:                         #4E524F
+!
+!!! blue dark/light
+!*color4:                          #16A085
+!*color12:                         #13BF9D
+!
+!!! magenta dark/light
+!*color5:                          #43746A
+!*color13:                         #487D72
+!
+!!! cyan dark/light
+!*color6:                          #00CCCC
+!*color14:                         #00D1D1
+!
+!!! white dark/light
+!*color7:                          #E0E0E0
+!*color15:                         #E8E8E8
+!
+!Xcursor.theme: xcursor-breeze
+
+
+! other possible settings:
+! Rxvt.perl-ext-common:            ...,clipboard
+! URxvt.keysym.M-C-c:              perl:clipboard:copy
+! URxvt.keysym.M-v:                perl:clipboard:paste
+! URxvt.keysym.M-C-v:              perl:clipboard:paste_escaped
+! URxvt*termName:                  string
+! URxvt*geometry:                  geometry
+! URxvt*chdir:                     string
+! URxvt*reverseVideo:              boolean
+! URxvt*loginShell:                boolean
+! URxvt*multiClickTime:            number
+! URxvt*jumpScroll:                boolean
+! URxvt*skipScroll:                boolean
+! URxvt*pastableTabs:              boolean
+! URxvt*scrollstyle:               plain
+! URxvt*scrollBar_right:           boolean
+! URxvt*scrollBar_floating:        true
+! URxvt*scrollBar_align:           mode
+! URxvt*thickness:                 number
+! URxvt*scrollTtyOutput:           boolean
+! URxvt*scrollTtyKeypress:         boolean
+! URxvt*scrollWithBuffer:          boolean
+! URxvt*tintColor:                 !7DA55
+! URxvt*blurRadius:                HxV
+! URxvt*fading:                    number
+! URxvt*fadeColor:                 color
+! URxvt*utmpInhibit:               boolean
+! URxvt*urgentOnBell:              boolean
+! URxvt*visualBell:                boolean
+! URxvt*mapAlert:                  boolean
+! URxvt*meta8:                     boolean
+! URxvt*tripleclickwords:          boolean
+! URxvt*insecure:                  boolean
+! URxvt*cursorUnderline:           boolean
+! URxvt*pointerBlank:              boolean
+! URxvt*color0:                    color
+! URxvt*color1:                    color
+! URxvt*color2:                    color
+! URxvt*color3:                    color
+! URxvt*color4:                    color
+! URxvt*color5:                    color
+! URxvt*color6:                    color
+! URxvt*color7:                    color
+! URxvt*color8:                    color
+! URxvt*color9:                    color
+! URxvt*color10:                   color
+! URxvt*color11:                   color
+! URxvt*color12:                   color
+! URxvt*color13:                   color
+! URxvt*color14:                   color
+! URxvt*color15:                   color
+! URxvt*colorBD:                   color
+! URxvt*colorIT:                   color
+! URxvt*colorUL:                   color
+! URxvt*colorRV:                   color
+! URxvt*underlineColor:            color
+! URxvt*scrollColor:               color
+! URxvt*troughColor:               color
+! URxvt*highlightColor:            color
+! URxvt*highlightTextColor:        color
+! URxvt*cursorColor:               color
+! URxvt*cursorColor2:              color
+! URxvt*pointerColor:              color
+! URxvt*pointerColor2:             color
+! URxvt*borderColor:               color
+! URxvt*iconFile:                  file
+! URxvt*font:                      fontname
+! URxvt*boldFont:                  fontname
+! URxvt*italicFont:                fontname
+! URxvt*boldItalicFont:            fontname
+! URxvt*intensityStyles:           boolean
+! URxvt*inputMethod:               name
+! URxvt*preeditType:               style
+! URxvt*imLocale:                  string
+! URxvt*imFont:                    fontname
+! URxvt*title:                     string
+! URxvt*iconName:                  string
+! URxvt*buffered:                  boolean
+! URxvt*depth:                     number
+! URxvt*visual:                    number
+! URxvt*transient-for:             windowid
+! URxvt*override-redirect:         boolean
+! URxvt*hold:                      boolean
+! URxvt*externalBorder:            number
+! URxvt*internalBorder:            number
+! URxvt*borderLess:                true
+! URxvt*lineSpace:                 number
+! URxvt*letterSpace:               number
+! URxvt*skipBuiltinGlyphs:         boolean
+! URxvt*pointerBlankDelay:         number
+! URxvt*backspacekey:              string
+! URxvt*deletekey:                 string
+! URxvt*print-pipe:                string
+! URxvt*modifier:                  modifier
+! URxvt*cutchars:                  string
+! URxvt*answerbackString:          string
+! URxvt*secondaryScreen:           boolean
+! URxvt*secondaryScroll:           boolean
+! URxvt*perl-lib:                  string
+! URxvt*perl-eval:                 perl-eval
+! URxvt*perl-ext-common:           string
+! URxvt*perl-ext:                  string
+! URxvt*iso14755:                  boolean
+! URxvt*iso14755_52:               boolean
+! URxvt*xrm:                       string
+! URxvt*keysym.sym:                keysym
+! URxvt*background.border:         boolean
+! URxvt*background.expr:           string
+! URxvt*background.interval:       seconds
+! URxvt*bell-command:              string
+! URxvt*kuake.hotkey:              string
+! URxvt*matcher.button:            string
+! URxvt*matcher.launcher:          string
+! URxvt*matcher.launcher.*:        string
+! URxvt*matcher.pattern.*:         string
+! URxvt*matcher.rend.*:            string
+! URxvt*remote-clipboard.fetch:    string
+! URxvt*remote-clipboard.store:    string
+! URxvt*searchable-scrollback:     string
+! URxvt*selection-autotransform.*: string
+! URxvt*selection-pastebin.cmd:    string
+! URxvt*selection-pastebin.url:    string
+! URxvt*selection.pattern-0:       string
+! URxvt*tab-bg:                    colour
+! URxvt*tab-fg:                    colour
+! URxvt*tabbar-bg:                 colour
+! URxvt*tabbar-fg:                 colour
+! URxvt*url-launcher:              string
