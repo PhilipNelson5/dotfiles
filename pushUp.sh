@@ -49,7 +49,7 @@ sleep .05
 
 echo "URXVT"
 cp ~/.Xresources ./.Xresources
-cp ~/.urxvt/ext* ./.urxvt/etc
+cp ~/.urxvt/ext/* ./.urxvt/etc
 sleep .05
 
 echo "ZSH"
