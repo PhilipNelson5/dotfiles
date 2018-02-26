@@ -3,6 +3,16 @@
 NC='\033[0m' # No Color
 GREEN='\033[0;32m'
 
+read -r -p "${1:-Are you sure? [y/N]} " response
+case "$response" in
+  [yY][eE][sS]|[yY])
+    echo "YES"
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
 echo -e "${GREEN} Pulling master ${NC}"
 cd ~/dotfiles
 git pull origin master
