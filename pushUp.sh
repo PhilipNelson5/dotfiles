@@ -17,7 +17,7 @@ cp ~/.clang-format ./.clang-format
 sleep .05
 
 echo "COMPTON"
-cp ~/.config/compton.conf ./config/compton.conf
+# cp ~/.config/compton.conf ./config/compton.conf
 sleep .05
 
 echo "GIT"
@@ -25,7 +25,7 @@ cp ~/.gitconfig ./.gitconfig
 sleep .05
 
 echo "i3"
-cp ~/.i3/config ./i3/config
+cp ~/.i3/config ./.i3/config
 sleep .05
 
 echo "i3status"
@@ -49,6 +49,7 @@ sleep .05
 
 echo "URXVT"
 cp ~/.Xresources ./.Xresources
+cp ~/.urxvt/ext* ./.urxvt/etc
 sleep .05
 
 echo "ZSH"

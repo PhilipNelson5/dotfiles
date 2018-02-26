@@ -16,9 +16,6 @@ let mapleader="\<Space>"
 " reload .vimrc
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
-" easy access to edit .vimrc
-noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>
-
 " Live update your vimrc when you modify it ! ! !
 augroup reload_vimrc
 autocmd!
@@ -63,8 +60,9 @@ set clipboard=unnamedplus,unnamed,autoselect
 
 ":set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
-set listchars=tab:→\ ,trail:~,extends:↷,precedes:↶
-set pastetoggle=<F1>    " Toggle paste mode
+set listchars=tab:\|\ ,trail:~,extends:↷,precedes:↶
+set list
+set pastetoggle=<F1>              " Toggle paste mode
 
 "=============================================================================="
 "============================ [ Mouse / Scrolling ] ==========================="
@@ -75,7 +73,8 @@ set mousehide                     " Hide the mouse cursor while typing
 "=============================================================================="
 "============================== [ Spell Checking ] ============================"
 "=============================================================================="
-set spell spelllang=en_us         " Set spell check to English
+set spell                         " turn on spell checking
+set spelllang=en_us               " Set spell check to English
 hi clear SpellBad                 " highlight misspelled words
 hi SpellBad cterm=underline       " set highlight style to underline for misspelled
 
@@ -99,3 +98,6 @@ set expandtab                     " Use spaces instead of tabs
 " set showtabline=1                 " Show tab line when > 1 tab open
 " Python double space tab
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+
+set iskeyword-=:                 " make colon a word separator
+"autocmd FileType cpp set iskeyword-=:

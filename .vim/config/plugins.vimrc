@@ -14,13 +14,14 @@ endif
 " List of plugins for vim-plug to install
 " Format is Plug 'git repo'
 call plug#begin('~/.vim/plugged')
-"Plug 'scrooloose/syntastic'
+"Plug 'junegunn/goyo.vim'
+"Plug 'suan/vim-instant-markdown'
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'JuliaEditorSupport/julia-vim'
-"Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -28,7 +29,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-"Plug 'suan/vim-instant-markdown'
+Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -42,6 +43,15 @@ call plug#end()
 " and where lines have been removed
 "--------------------------------------------------------------------"
 let g:gitgutter_realtime=1      " real time sign updates
+
+"--------------------------------------------------------------------"
+"----------------------- [ You-Complete-Me ] ------------------------"
+" Amazing syntax aware completion
+"--------------------------------------------------------------------"
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 "--------------------------------------------------------------------"
 "-------------------------- [ Solarized ] ---------------------------"
@@ -126,9 +136,9 @@ let g:clang_format#auto_format_on_insert_leave=0
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_formatexpr=1
 
-nnoremap <C-f> :ClangFormat<CR>zz
-vnoremap <C-f> :ClangFormat<CR>zz
-inoremap <C-f> <Esc>:ClangFormat<CR>zz
+autocmd Filetype cpp,hpp nmap <C-f> :ClangFormat<CR>zz
+autocmd Filetype cpp,hpp vmap <C-f> :ClangFormat<CR>zz
+autocmd Filetype cpp,hpp imap <C-f> <Esc>:ClangFormat<CR>zz
 
 "--------------------------------------------------------------------"
 "------------------------- [ NERD Comment ] -------------------------"
@@ -207,13 +217,13 @@ set iskeyword+=:
 " Syntax checking
 "--------------------------------------------------------------------"
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 

@@ -27,12 +27,12 @@ URxvt*lineSpace:                  0
 URxvt*loginShell:                 true
 URxvt*saveLines:                  10000
 URxvt*termName:                   rxvt-unicode
-Urxvt*secondaryScroll:            true      # Enable Shift-PageUp/Down in screen
+Urxvt*secondaryScroll:            false      # Enable Shift-PageUp/Down in screen
 
 URxvt*depth:                      32
 URxvt*background:                 [80]#000000
 URxvt*scrollBar:                  false
-URxvt*mouseWheelScrollPage:       true
+URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
 
@@ -49,15 +49,24 @@ URxvt*font:                       xft:Noto\ Mono\ for\ Powerline\
                                    :pixelsize=12\
                                    :antialias=true,\
                                    fontawesome-webfont
+
 URxvt*allow_bold:                 true
+URxvt*letterSpace:                -.5
 
 !!----------------------------------------------------------------------------!!
 !! Perl                                                                       !!
 !!----------------------------------------------------------------------------!!
 
 URxvt.matcher.button:             1
-URxvt.perl-ext-common:            default,matcher,solarized
+URxvt.perl-ext-common:            default,matcher,solarized,font-size
 URxvt.urlLauncher:                google-chrome-stable
+
+!!----------------------------------------------------------------------------!!
+!! Dynamic Font Size  https://github.com/majutsushi/urxvt-font-size           !!
+!!----------------------------------------------------------------------------!!
+
+URxvt.keysym.Mod4-Up:     font-size:increase
+URxvt.keysym.Mod4-Down:   font-size:decrease
 
 !!----------------------------------------------------------------------------!!
 !! Color Scheme  https://github.com/BobuSumisu/urxvt-solarized                !!
@@ -108,9 +117,9 @@ URxvt.solarized.default:          dark
 #define S_cyan          #2aa198
 #define S_green         #859900
 
-    !! Background color
+!! Background color
 !*background:            S_base03
-    !! File names, user@host, highlight
+!! File names, user@host, highlight
 !*foreground:            S_base2
 !*cursorColor:           S_base1
 !*pointerColorBackground:S_base01
