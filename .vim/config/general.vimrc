@@ -47,9 +47,9 @@ set ttyfast                       " Improved performance
 set lazyredraw                    " Only redraw when needed (better for large macros)
 " set laststatus=2
 set ttimeoutlen=50                " Time in milisenconds that is waited while pressing a key combination
-set encoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set encoding=UTF-8
+set termencoding=UTF-8
+set fileencodings=UTF-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set splitbelow                    " Open horizontal splits below
 set splitright                    " Open verticle splits to the right
 
@@ -60,7 +60,7 @@ set clipboard=unnamedplus,unnamed,autoselect
 
 ":set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
-set listchars=tab:\|\ ,trail:~,extends:↷,precedes:↶
+set listchars=tab:→\ ,trail:~,extends:↷,precedes:↶
 set list
 set pastetoggle=<F1>              " Toggle paste mode
 

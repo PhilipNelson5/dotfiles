@@ -12,7 +12,7 @@ noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>:lcd $HOME/.vim/config<CR>
 
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
-" Tabs and buffer maipulation
+" Tabs and buffer manipulation
 nnoremap <leader>n :tabnew<CR>         " Open a new empty tab
 nnoremap <leader>l :tabnext<CR>        " Move to the next tab
 nnoremap <leader>h :tabprevious<CR>    " Move to the previous tab
@@ -58,6 +58,9 @@ nnoremap <C-C> :w<CR>
 " Clear Highlighting
 nnoremap <Leader>d :nohl<CR>
 
+" Open COPE
+nnoremap <Leader>co :cope<CR>
+
 " Normal moving over wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -94,7 +97,7 @@ noremap L $
 inoremap <F2> {<Esc>o}<Esc>O
 
 " Fold function name and body
-nnoremap <leader>fo v/{<CR>%zf:nohl<CR>
+nnoremap <leader>fo v/{<CR>%zf:nohl<CR>cw
 
 " Auto capitalize WORD
 inoremap <C-u> <esc>mzgUiw`za
@@ -129,6 +132,19 @@ command! MakeTags !ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 
+" You Complete Me
+" FixIt
+nnoremap <Leader>yf :YcmCompleter FixIt<CR>
+
+" jump to the next <++> mark, usually <C-j>
+nnoremap <Leader>m /<++><CR>:nohl<CR>cw
+
+"auto for loop generator :D
+nnoremap <Leader>fl ^yiwifor(auto <ESC>f i =<ESC>2f i; <ESC>p3f i;<ESC>$pa)<ESC>
+
+"auto for each generator :D :D
+nnoremap <Leader>fe Ifor (auto&& <ESC>f i :<ESC>A)<ESC>
+
 "=============================================================================="
 "============================ [ File Type Specific ] =========================="
 "=============================================================================="
@@ -137,8 +153,10 @@ command! MakeTags !ctags -R .
 autocmd FileType javascript nmap <F3> :wa<CR> :!node '%:t'<CR>
 autocmd FileType javascript imap <F3> <ESC>:wa<CR> :!node '%:t'<CR>
 
-autocmd FileType javascript nmap <C-F> :w<CR>:!clang-format -i -style=file '%:t'<CR>:redraw<CR>
-autocmd FileType javascript imap <C-F> <ESC>:w<CR>:!clang-format -i -style=file '%:t'<CR>:redraw<CR>
+autocmd FileType javascript noremap <C-F> <ESC>:w<CR>:!eslint --fix '%:p'<CR>:redraw<CR>
+
+" autocmd FileType javascript nmap <C-F> :w<CR>:!clang-format -i -style=file '%:t'<CR>:redraw<CR>
+" autocmd FileType javascript imap <C-F> <ESC>:w<CR>:!clang-format -i -style=file '%:t'<CR>:redraw<CR>
 
 " LaTex
 autocmd FileType tex nmap <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>:redraw<CR>
@@ -159,6 +177,7 @@ autocmd Filetype cpp,hpp imap <F3> <ESC>:wa<CR> :make -j<CR>:redraw<CR>
 autocmd Filetype cpp,hpp nmap <S-F3> <ESC>:wa<CR> :make debug -j<CR>:redraw<CR>
 autocmd Filetype cpp,hpp imap <S-F3> <ESC>:wa<CR> :make debug -j<CR>:redraw<CR>
 
+" generate header file include guards
 autocmd Filetype cpp,hpp map <leader>g V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<CR><CR><CR>#endif<ESC>kO
 
 "=============================================================================="
