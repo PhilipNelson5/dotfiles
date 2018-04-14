@@ -32,6 +32,10 @@ echo "i3status"
 cp ~/.config/i3status/config ./.config/i3status/config
 sleep .05
 
+echo "NEWS BOAT"
+cp ~/.newsboat/config ./.newsboat/config
+cp ~/.newsboat/urls ./.newsboat/urls
+
 echo "TERMITE"
 cp ~/.config/termite/config ./config/termite/config
 sleep .05
@@ -57,14 +61,14 @@ cp ~/.zshrc ./.zshrc
 sleep .05
 
 echo -e "${BLUE} Adding to git ${NC}"
-sleep .1
 git add .
+sleep .1
 
 echo -e "${BLUE} Committing to git ${NC}"
 git commit
 
 echo -e "${BLUE} Pushing to git ${NC}"
-sleep .1
 ~/scripts/push.sh
+sleep .1
 
 echo -e "${GREEN} [DONE] ${NC}"
