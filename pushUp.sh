@@ -8,7 +8,8 @@ GREEN='\033[0;32m'
 echo -e "${GREEN} COPYING FILES"
 echo -e "${CYAN}"
 
-echo "BASH ALIASES"
+echo "BASH"
+cp ~/.bashrc ./.bashrc
 cp ~/.bash_aliases ./.bash_aliases
 sleep .05
 
@@ -16,9 +17,9 @@ echo "CLANG FORMAT"
 cp ~/.clang-format ./.clang-format
 sleep .05
 
-echo "COMPTON"
+# echo "COMPTON"
 # cp ~/.config/compton.conf ./config/compton.conf
-sleep .05
+# sleep .05
 
 echo "GIT"
 cp ~/.gitconfig ./.gitconfig
@@ -46,8 +47,8 @@ sleep .05
 
 echo "VIM"
 cp ~/.vim/config/* ./.vim/config
-cp ~/.vim/snippits/* ./.vim/snippits
 cp ~/.vim/colors/* ./.vim/colors
+cp ~/.vim/snippits/* ./.vim/snippits
 cp ~/.vim/syntax/* ./.vim/syntax
 sleep .05
 

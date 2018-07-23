@@ -39,9 +39,6 @@ nnoremap <Leader>W :w<Space>
 " Write All
 nnoremap <Leader>a :wa<CR>
 
-" Write Quit All
-nnoremap <Leader>A :wqa<CR>
-
 " Quit
 nnoremap <Leader>q :q<CR>
 

@@ -5,13 +5,14 @@ export ZSH=/home/philip/.oh-my-zsh
 
 # Extra paths
 export PATH=$PATH:/home/philip/node_modules/.bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 # Path to Android SKD
 export ANDROID_HOME=/opt/android
 
 ZSH_THEME="agnoster"
 
-plugins=(autojump)
+plugins=(autojump, extract)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,6 +47,7 @@ alias :q='exit'                      # close the terminal
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
 alias zx='exit'                      # exits terminal
+alias q='exit'                      # exits terminal
 
 # dotfile shortcuts
 alias Xrec='vim ~/.Xresources'       # change Xresources
@@ -82,6 +84,9 @@ alias python='python3'               # default to python3
 alias r='ranger'                     # run ranger
 alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
 alias untar='tar -xzvf'              # untar a tarball
+alias rss='newsboat'
+alias se='stack exec'
+alias sb='stack build'
 
 function chpwd() {                   # always ls after changing directories
   emulate -L zsh
@@ -139,4 +144,3 @@ function swap() {
 [[ -s /home/philip/.autojump/etc/profile.d/autojump.sh ]] && source /home/philip/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
-

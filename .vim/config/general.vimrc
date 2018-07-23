@@ -64,6 +64,9 @@ set listchars=tab:→\ ,trail:~,extends:↷,precedes:↶
 set list
 set pastetoggle=<F1>              " Toggle paste mode
 
+set wildmode=longest,list,full    " Match the longest and display the full list of matches
+set wildmenu
+
 "=============================================================================="
 "============================ [ Mouse / Scrolling ] ==========================="
 "=============================================================================="

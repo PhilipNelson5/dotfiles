@@ -45,10 +45,8 @@ URxvt*foreground:                 grey
 !! Font                                                                       !!
 !!----------------------------------------------------------------------------!!
 
-URxvt*font:                       xft:Noto\ Mono\ for\ Powerline\
-                                   :pixelsize=12\
-                                   :antialias=true,\
-                                   fontawesome-webfont
+URxvt*font:                       xft:Inconsolata\ for\ Powerline\
+                                   :pixelsize=15\
 
 URxvt*allow_bold:                 true
 URxvt*letterSpace:                -.5

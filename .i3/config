@@ -115,7 +115,7 @@ bindsym $mod+l               focus right
 bindsym $mod+Shift+l         move right 30
 
 #bindsym $mod+m               exec $music
-bindsym $mod+m               exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=bikioccmkafdpakkkcpdbppfkghcmihk
+bindsym $mod+m               exec signal-desktop
 bindsym $mod+Shift+m         exec $mute
 
 bindsym $mod+n               exec $term -e newsboat
@@ -149,17 +149,22 @@ bindsym $mod+v               split vertical
 bindsym $mod+Shift+v         exec projectM-pulseaudio
 
 bindsym $mod+w               exec --no-startup-id $browser
-#bindsym $mod+Shift+w
+bindsym $mod+Shift+w         exec --no-startup-id $browser --incognito
 
 bindsym $mod+x               exec --no-startup-id ~/.config/i3/lock.sh
 bindsym $mod+Ctrl+x          --release exec --no-startup-id xkill
 bindsym $mod+Shift+x         exec sudo shutdown now
 
 bindsym $mod+y               exec $term -e calcurse
-bindsym $mod+Shift+y         resize shrink width 5 px or 5ppt
+bindsym $mod+Shift+y         resize shrink width 5 px or 5 ppt
 
 bindsym $mod+z               gaps outer current plus 5
 bindsym $mod+Shift+z         gaps outer current minus 5
+
+bindsym $mod+semicolon       exec "python ~/.config/scripts/pomodoro-client.py start"
+bindsym $mod+Ctrl+semicolon  exec "python ~/.config/scripts/pomodoro-client.py stop"
+bindsym $mod+apostrophe      exec "python ~/.config/scripts/pomodoro-client.py skip"
+bindsym $mod+doublequote     exec "python ~/.config/scripts/pomodoro-client.py toggle"
 
 ##################################################
 #                Workspace Bindings              #
@@ -174,13 +179,13 @@ bindsym $mod+Shift+Prior     move container to workspace prev
 bindsym $mod+Next            workspace next
 bindsym $mod+Shift+Next      move container to workspace next
 bindsym $mod+Tab             workspace back_and_forth
-bindsym $mod+semicolon       workspace next
-bindsym $mod+apostrophe      split horizontal ;; exec $term
+#bindsym $mod+apostrophe      split horizontal ;; exec $term
 bindsym $mod+slash           split vertical ;; exec $term
 bindsym $mod+Shift+slash     kill
 bindsym $mod+backslash       workspace back_and_forth
 bindsym Print                exec --no-startup-id i3-scrot
 bindsym $mod+Print           --release exec --no-startup-id i3-scrot -w
+bindsym Shift+Print          --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+minus     move scratchpad
 bindsym $mod+minus           scratchpad show
 
@@ -405,7 +410,8 @@ exec_always --no-startup-id fix_xcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-  status_command i3status
+  #status_command i3status
+  status_command ~/.config/scripts/i3status.sh
   position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
