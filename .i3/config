@@ -56,6 +56,11 @@ for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
 exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e julia -q
 
+# vimclip in a floating window
+for_window [instance="vimclip"] floating enable
+for_window [instance="vimclip"] resize set 625 400
+for_window [instance="vimclip"] move position center
+
 ##################################################
 #                 Basic Bindings                 #
 ##################################################
@@ -138,15 +143,16 @@ bindsym $mod+s               gaps inner current plus 5
 bindsym $mod+Shift+s         gaps inner current minus 5
 #bindsym $mod+Shift+s         sticky toggle
 
-bindsym $mod+t               exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t          exec --no-startup-id compton -b
-#bindsym $mod+Shift+t
+bindsym $mod+t               exec --no-startup-id compton -b
+bindsym $mod+Shift+t         exec --no-startup-id pkill compton
+#bindsym $mod+Ctrl+t
 
 bindsym $mod+u               [instance="dropdown"] scratchpad show; move position center
 bindsym $mod+Shift+u         resize grow height 5 px or 5 ppt
 
 bindsym $mod+v               split vertical
-bindsym $mod+Shift+v         exec projectM-pulseaudio
+#bindsym $mod+Shift+v         exec projectM-pulseaudio
+bindsym $mod+Shift+v         exec --no-startup-id $term -name vimclip -e vimclip
 
 bindsym $mod+w               exec --no-startup-id $browser
 bindsym $mod+Shift+w         exec --no-startup-id $browser --incognito

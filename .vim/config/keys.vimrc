@@ -123,6 +123,9 @@ noremap S :sort<CR>
 " Turn off Ex Mode
 nnoremap Q <nop>
 
+" Copy and Paste from system clipboard [ Requires Gvim ]
+vnoremap <C-c> "*y :let @+=@*<CR>
+
 " Create the `tags` file (may need to install ctags first)
 command! MakeTags !ctags -R .
 " - Use ^] to jump to tag under cursor
@@ -141,6 +144,9 @@ nnoremap <Leader>fl ^yiwifor(auto <ESC>f i =<ESC>2f i; <ESC>p3f i;<ESC>$pa)<ESC>
 
 "auto for each generator :D :D
 nnoremap <Leader>fe Ifor (auto&& <ESC>f i :<ESC>A)<ESC>
+
+"auto begin( ), end( ) for std::algorithms
+nnoremap <Leader>be ciwbegin(<ESC>pa), end(<ESC>pa), 
 
 "=============================================================================="
 "============================ [ File Type Specific ] =========================="
