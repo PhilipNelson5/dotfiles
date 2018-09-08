@@ -29,7 +29,7 @@ URxvt*saveLines:                  10000
 URxvt*termName:                   rxvt-unicode
 Urxvt*secondaryScroll:            false      # Enable Shift-PageUp/Down in screen
 
-URxvt*depth:                      32
+URxvt*depth:                      24
 URxvt*background:                 [80]#000000
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false

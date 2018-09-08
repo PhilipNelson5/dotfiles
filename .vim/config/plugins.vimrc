@@ -50,7 +50,6 @@ let g:gitgutter_realtime=1      " real time sign updates
 "----------------------- [ You-Complete-Me ] ------------------------"
 " Amazing syntax aware completion
 "--------------------------------------------------------------------"
-let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -127,6 +126,8 @@ nnoremap <C-u> :UndotreeToggle<cr>
 
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+let g:ycm_max_num_candidates = 25
+let g:ycm_max_num_identifier_candidates = 10
 
 "--------------------------------------------------------------------"
 "------------------------ [ clang-format ] --------------------------"
