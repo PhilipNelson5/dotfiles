@@ -45,6 +45,10 @@ echo "TMUX"
 cp ~/.tmux.conf ./.tmux.conf
 sleep .05
 
+echo "NEO VIM"
+cp ~/.config/nvim/config/* ./.config/nvim/config
+sleep .05
+
 echo "VIM"
 cp ~/.vim/config/* ./.vim/config
 cp ~/.vim/colors/* ./.vim/colors
