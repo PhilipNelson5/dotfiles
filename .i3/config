@@ -143,7 +143,7 @@ bindsym $mod+s               gaps inner current plus 5
 bindsym $mod+Shift+s         gaps inner current minus 5
 #bindsym $mod+Shift+s         sticky toggle
 
-bindsym $mod+t               exec --no-startup-id compton -b
+bindsym $mod+t               exec --no-startup-id compton -b --opengl --vsync opengl-swc --paint-on-overlay
 bindsym $mod+Shift+t         exec --no-startup-id pkill compton
 #bindsym $mod+Ctrl+t
 
@@ -191,7 +191,8 @@ bindsym $mod+Shift+slash     kill
 bindsym $mod+backslash       workspace back_and_forth
 bindsym Print                exec --no-startup-id i3-scrot
 bindsym $mod+Print           --release exec --no-startup-id i3-scrot -w
-bindsym Shift+Print          --release exec --no-startup-id i3-scrot -s
+#bindsym Shift+Print          exec --no-startup-id i3-scrot -s
+bindsym Shift+Print          exec --no-startup-id bash -c ~/screenClip.sh
 bindsym $mod+Shift+minus     move scratchpad
 bindsym $mod+minus           scratchpad show
 

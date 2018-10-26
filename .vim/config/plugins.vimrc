@@ -27,6 +27,9 @@ Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'pangloss/vim-javascript'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-pencil'
 Plug 'rhysd/vim-clang-format'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
@@ -130,6 +133,30 @@ let g:ycm_max_num_candidates = 25
 let g:ycm_max_num_identifier_candidates = 10
 
 "--------------------------------------------------------------------"
+"------------------------- [ vim-lexical ] ---------------------------"
+" pencil aspires to make Vim as powerful for writing as coding
+"--------------------------------------------------------------------".
+let g:lexical#thesaurus_key = '<leader>t'
+let g:lexical#dictionary_key = '<leader>k'
+
+"--------------------------------------------------------------------"
+"------------------------- [ vim-pencil ] ---------------------------"
+" pencil aspires to make Vim as powerful for writing as coding
+"--------------------------------------------------------------------".
+let g:pencil#wrapModeDefault = 'soft'
+"let g:pencil#autoformat = 1
+let g:pencil#textwidth = 74
+let g:pencil#conceallevel = 3
+let g:pencil#concealcursor = 'c'
+let g:airline_section_x = '%{PencilMode()}'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+                            \ | call lexical#init()
+                            \ | call litecorrect#init()
+augroup END
+
+"--------------------------------------------------------------------"
 "------------------------ [ clang-format ] --------------------------"
 " Formats your code with specific coding style using clang-format.
 "--------------------------------------------------------------------"
@@ -139,9 +166,7 @@ let g:clang_format#auto_format_on_insert_leave=0
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_formatexpr=1
 
-autocmd Filetype cpp,hpp nmap <C-f> :ClangFormat<CR>zz
-autocmd Filetype cpp,hpp vmap <C-f> :ClangFormat<CR>zz
-autocmd Filetype cpp,hpp imap <C-f> <Esc>:ClangFormat<CR>zz
+autocmd Filetype cpp,hpp map <C-f> <Esc>:ClangFormat<CR>
 
 "--------------------------------------------------------------------"
 "------------------------- [ NERD Comment ] -------------------------"

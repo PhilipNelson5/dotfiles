@@ -106,6 +106,17 @@ inoremap <C-t>o <ESC>Ypa/<ESC>O
 " change in between tags
 nnoremap ci< F>lct<
 
+" change in between $ $
+nnoremap ci$ F$lct$
+
+" visual select in between $ $
+nnoremap vi$ F$lvt$
+nnoremap va$ F$vf$
+
+" yank in between $ $
+nnoremap yi$ F$lyt$
+nnoremap ya$ F$yf$
+
 " Helps 'COPE' with your problems
 noremap <F4> :cp<CR>zz
 noremap <F5> :cn<CR>zz
@@ -146,7 +157,7 @@ nnoremap <Leader>fl ^yiwifor(auto <ESC>f i =<ESC>2f i; <ESC>p3f i;<ESC>$pa)<ESC>
 nnoremap <Leader>fe Ifor (auto&& <ESC>f i :<ESC>A)<ESC>
 
 "auto begin( ), end( ) for std::algorithms
-nnoremap <Leader>be ciwbegin(<ESC>pa), end(<ESC>pa), 
+nnoremap <Leader>be ciwbegin(<ESC>pa), end(<ESC>pa),
 
 "=============================================================================="
 "============================ [ File Type Specific ] =========================="
@@ -182,6 +193,12 @@ autocmd Filetype cpp,hpp imap <S-F3> <ESC>:wa<CR> :make debug -j<CR>:redraw<CR>
 
 " generate header file include guards
 autocmd Filetype cpp,hpp map <leader>g V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<CR><CR><CR>#endif<ESC>kO
+
+" Markdown
+" autocmd Filetype markdown nmap <F3> <ESC>:wa<CR> :make<CR>:redraw<CR>
+" autocmd Filetype markdown imap <F3> <ESC>:wa<CR> :make<CR>:redraw<CR>
+autocmd Filetype markdown nmap <F3> <ESC>:wa<CR> :!./pand '%:t'<CR>:redraw<CR>
+autocmd Filetype markdown imap <F3> <ESC>:wa<CR> :!./pand '%:t'<CR>:redraw<CR>
 
 "=============================================================================="
 "============================= [ Tab Completion ] ============================="

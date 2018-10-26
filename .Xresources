@@ -30,11 +30,13 @@ URxvt*termName:                   rxvt-unicode
 Urxvt*secondaryScroll:            false      # Enable Shift-PageUp/Down in screen
 
 URxvt*depth:                      24
-URxvt*background:                 [80]#000000
+! URxvt*background:                 [80]#000000
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*foreground:                 grey
+
+URxvt.pointerBlank:               true
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
@@ -45,8 +47,7 @@ URxvt*foreground:                 grey
 !! Font                                                                       !!
 !!----------------------------------------------------------------------------!!
 
-URxvt*font:                       xft:Inconsolata\ for\ Powerline\
-                                   :pixelsize=15\
+URxvt*font:                       xft:Inconsolata\ for\ Powerline\:pixelsize=15
 
 URxvt*allow_bold:                 true
 URxvt*letterSpace:                -.5
