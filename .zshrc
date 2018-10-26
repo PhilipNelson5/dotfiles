@@ -1,10 +1,10 @@
 # source ~/.zshrc
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/home/philip/.oh-my-zsh
 
 # Extra paths
-export PATH=$PATH:$HOME/node_modules/.bin
+export PATH=$PATH:/home/philip/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin
 
 # Path to Android SKD

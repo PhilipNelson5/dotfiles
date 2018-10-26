@@ -38,7 +38,7 @@ cp ~/.newsboat/config ./.newsboat/config
 cp ~/.newsboat/urls ./.newsboat/urls
 
 echo "TERMITE"
-cp ~/.config/termite/config ./config/termite/config
+cp ~/.config/termite/config ./.config/neovim/config
 sleep .05
 
 echo "TMUX"
