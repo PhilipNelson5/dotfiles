@@ -6,7 +6,6 @@ GREEN='\033[0;32m'
 read -r -p "${1:-Are you sure? [y/N]} " response
 case "$response" in
   [yY][eE][sS]|[yY])
-    echo "YES"
     ;;
   *)
     exit 0
