@@ -97,6 +97,7 @@ alias update='~/.update.sh'
 alias x='exit'
 alias nuke='rm -rf'
 alias push='~/.push.sh'
+alias pls='sudo $(fc -ln -1)'
 
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
