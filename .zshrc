@@ -6,6 +6,7 @@ export ZSH=/home/philip/.oh-my-zsh
 # Extra paths
 export PATH=$PATH:/home/philip/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 
 # Path to Android SKD
 export ANDROID_HOME=/opt/android
@@ -144,3 +145,5 @@ function swap() {
 [[ -s /home/philip/.autojump/etc/profile.d/autojump.sh ]] && source /home/philip/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

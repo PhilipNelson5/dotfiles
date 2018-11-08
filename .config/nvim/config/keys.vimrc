@@ -5,7 +5,7 @@ let mapleader="\<SPACE>"
 nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " easy access to edit .vimrc, changes the local dir to config folder
-noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>:lcd $HOME/.vim/config<CR>
+noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>:lcd $HOME/.config/nvim/config<CR>
 
 " Auto curly braces
 inoremap <F2> {<Esc>o}<Esc>O
@@ -14,8 +14,8 @@ inoremap <F2> {<Esc>o}<Esc>O
 noremap <F7> <Esc>mzgg=G`zzz
 
 " Normal movement on wrapped lines
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Turn off highlighting
 nnoremap <leader>d :nohl<CR>
@@ -27,6 +27,9 @@ nnoremap <leader>a :wa<CR>
 
 " Quick file edit
 nnoremap <Leader>e :e<Space>
+
+" Run fzf
+nnoremap <Leader>F :FZF<CR><C-l>
 
 " Quick quitting
 nnoremap <leader>q :q<CR>
@@ -66,6 +69,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <leader>l :tabn<CR>
 nnoremap <leader>h :tabp<CR>
 
+noremap <leader>o :Vexp<CR>
+
 " change in between and around $ $
 nnoremap ci$ F$lct$
 nnoremap ca$ F$cf$
@@ -88,6 +93,9 @@ autocmd Filetype cpp,hpp map <leader>g V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <
 " LaTex
 autocmd FileType tex imap <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
 autocmd FileType tex map <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
+
+" Java Script
+autocmd FileType javascript noremap <leader>f :w<CR>:!eslint --fix '%:p'<CR>
 
 " automatically adds the correct shebang to script files
 augroup Shebang

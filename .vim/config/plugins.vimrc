@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'junegunn/goyo.vim'
 "Plug 'suan/vim-instant-markdown'
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang --system-boost --js-completer' }
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
@@ -152,8 +152,8 @@ let g:airline_section_x = '%{PencilMode()}'
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init()
-                            \ | call lexical#init()
-                            \ | call litecorrect#init()
+        \ | call lexical#init()
+        \ | call litecorrect#init()
 augroup END
 
 "--------------------------------------------------------------------"

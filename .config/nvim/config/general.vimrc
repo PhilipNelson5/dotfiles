@@ -35,11 +35,14 @@ hi SpellBad cterm=underline       " set highlight style to underline for misspel
 set clipboard+=unnamedplus
 
 " settings for netrw file explorer
-noremap <leader>o :Vexp<CR>
-let g:netrw_banner = 0
+let g:netrw_banner = 1
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 
-
+" Use ag instead of ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  let $FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+endif

@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'iCyMind/NeoSolarized'
   Plug 'jelera/vim-javascript-syntax'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'rhysd/vim-clang-format'
   Plug 'scrooloose/nerdcommenter'
