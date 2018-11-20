@@ -2,6 +2,9 @@
 augroup reload_vimrc
 autocmd!
 autocmd BufWritePost init.vim source $MYVIMRC
+autocmd BufWritePost general.vimrc source $MYVIMRC
+autocmd BufWritePost keys.vimrc source $MYVIMRC
+autocmd BufWritePost plugins.vimrc source $MYVIMRC
 augroup END
 
 " Turn on the mouse
@@ -30,6 +33,10 @@ set spell                         " turn on spell checking
 set spelllang=en_us               " Set spell check to English
 hi clear SpellBad                 " highlight misspelled words
 hi SpellBad cterm=underline       " set highlight style to underline for misspelled
+
+" ignore case unless there are uppercase characters in the search 
+set ignorecase
+set smartcase
 
 " Clipboard
 set clipboard+=unnamedplus

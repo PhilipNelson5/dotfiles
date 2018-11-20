@@ -13,6 +13,12 @@ inoremap <F2> {<Esc>o}<Esc>O
 " Generic indentation formatting
 noremap <F7> <Esc>mzgg=G`zzz
 
+" Remove trailing white space
+nnoremap <Leader>s mz:%s/\s\+$//<Enter>'zzz
+
+" Toggle line wrapping
+map <C-W> :set wrap!<CR>
+
 " Normal movement on wrapped lines
 nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -26,10 +32,8 @@ nnoremap <leader>W :w<Space>
 nnoremap <leader>a :wa<CR>
 
 " Quick file edit
-nnoremap <Leader>e :e<Space>
-
-" Run fzf
-nnoremap <Leader>F :FZF<CR><C-l>
+"   run fzf
+nnoremap <Leader>e :FZF<CR>
 
 " Quick quitting
 nnoremap <leader>q :q<CR>
@@ -105,4 +109,3 @@ augroup Shebang
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl>\"|$
   autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
 augroup END
-
