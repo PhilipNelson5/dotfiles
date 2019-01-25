@@ -7,6 +7,8 @@ autocmd BufWritePost keys.vimrc source $MYVIMRC
 autocmd BufWritePost plugins.vimrc source $MYVIMRC
 augroup END
 
+set encoding=UTF-8
+
 " Turn on the mouse
 set mouse=a
 

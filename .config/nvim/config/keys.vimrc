@@ -73,7 +73,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <leader>l :tabn<CR>
 nnoremap <leader>h :tabp<CR>
 
-noremap <leader>o :Vexp<CR>
+nnoremap <leader>o :NERDTreeToggle<CR>
 
 " change in between and around $ $
 nnoremap ci$ F$lct$
