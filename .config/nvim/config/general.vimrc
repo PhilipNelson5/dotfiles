@@ -36,7 +36,7 @@ set spelllang=en_us               " Set spell check to English
 hi clear SpellBad                 " highlight misspelled words
 hi SpellBad cterm=underline       " set highlight style to underline for misspelled
 
-" ignore case unless there are uppercase characters in the search 
+" Ignore case unless there are uppercase characters in the search 
 set ignorecase
 set smartcase
 

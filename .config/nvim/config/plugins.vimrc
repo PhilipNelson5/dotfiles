@@ -10,15 +10,17 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
   Plug 'ericcurtin/CurtineIncSw.vim'
-  Plug 'iCyMind/NeoSolarized'
+  Plug 'https://github.com/morhetz/gruvbox'
+  "Plug 'iCyMind/NeoSolarized'
   Plug 'jelera/vim-javascript-syntax'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'octol/vim-cpp-enhanced-highlight'
+  Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
   Plug 'rhysd/vim-clang-format'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'tikhomirov/vim-glsl'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang --system-boost --js-completer' }
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-tidy --clang-completer --js-completer' }
 
 call plug#end()
 
@@ -26,15 +28,18 @@ call plug#end()
 " --------------------
 map <F4> :call CurtineIncSw()<CR>
 
+" gruvbox
+colorscheme gruvbox
+
 " NeoSolarized
 " ------------
-colorscheme NeoSolarized
-set background=dark
-let g:neosolarized_bold = 1
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 1
-let g:neosolarized_vertSplitBgTrans = 0
-let g:neosolarized_contrast = "high"
+"colorscheme NeoSolarized
+"set background=dark
+"let g:neosolarized_bold = 1
+"let g:neosolarized_underline = 1
+"let g:neosolarized_italic = 1
+"let g:neosolarized_vertSplitBgTrans = 0
+"let g:neosolarized_contrast = "high"
 
 " Octol C++ Enhanced Highlight
 " ----------------------------
@@ -57,9 +62,11 @@ filetype plugin on
 " ---------
 " close vim if nerdtree is the only thing still open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = 'V'
 
 " vim-glsl
 " --------
 autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl
+
+" You Complete Me
+" ---------------
+let g:ycm_extra_conf_globlist = ['~/*']

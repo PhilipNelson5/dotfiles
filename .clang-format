@@ -1,37 +1,63 @@
+﻿# http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# https://zed0.co.uk/clang-format-configurator/
 ---
-BasedOnStyle: LLVM
-AccessModifierOffset: -2
-AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortBlocksOnASingleLine: false
-AllowShortFunctionsOnASingleLine: Inline
-AllowShortIfStatementsOnASingleLine: true
-AllowShortLoopsOnASingleLine: false
-AlwaysBreakTemplateDeclarations: true
-BinPackArguments: false
-BinPackParameters: false
-BreakBeforeBraces: Allman
-BreakConstructorInitializersBeforeComma: false
-ColumnLimit: 80
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
-ConstructorInitializerIndentWidth: 2
-ContinuationIndentWidth: 2
-Cpp11BracedListStyle: true
-DerivePointerAlignment: false
-IndentCaseLabels: false
-IndentWidth: 2
+BasedOnStyle: Mozilla
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: 'false'
+AlignConsecutiveDeclarations: 'false'
+AlignEscapedNewlines: Right
+AlignOperands: 'true'
+AllowShortBlocksOnASingleLine: 'true'
+AllowShortCaseLabelsOnASingleLine: 'false'
+AllowShortLoopsOnASingleLine: 'false'
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: 'true'
+BinPackArguments: 'false'
+BinPackParameters: 'false'
+BreakBeforeBinaryOperators: All
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterStruct: 'true'
+  SplitEmptyFunction: 'true'
+  AfterClass: 'true'
+  AfterControlStatement: 'true'
+  AfterEnum: 'true'
+  AfterFunction: 'true'
+  AfterNamespace: 'true'
+  AfterStruct: 'true'
+  AfterUnion: 'true'
+  BeforeCatch: 'true'
+  BeforeElse: 'true'
+ColumnLimit: '80'
+Cpp11BracedListStyle: 'true'
+FixNamespaceComments: 'true'
+IncludeBlocks: Regroup
+IndentCaseLabels: 'false'
+IndentPPDirectives: AfterHash
+IndentWidth: '2'
+KeepEmptyLinesAtTheStartOfBlocks: 'false'
 Language: Cpp
-NamespaceIndentation: All
-PenaltyBreakBeforeFirstCallParameter: 0
-PenaltyBreakComment: 2000
-PenaltyBreakString: 3000
-PenaltyBreakFirstLessLess: 1000
-PenaltyExcessCharacter: 100000
-PenaltyReturnTypeOnItsOwnLine: 10000
+MaxEmptyLinesToKeep: '2'
+NamespaceIndentation: None
 PointerAlignment: Left
-SpaceBeforeAssignmentOperators: true
+ReflowComments: 'true'
+SortIncludes: 'true'
+SortUsingDeclarations: 'true'
+SpaceAfterTemplateKeyword: 'false'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeCtorInitializerColon: 'true'
+SpaceBeforeInheritanceColon: 'true'
 SpaceBeforeParens: ControlStatements
-SpaceInEmptyParentheses: false
-SpacesInAngles: false
-SpacesInParentheses: false
+SpaceBeforeRangeBasedForLoopColon: 'true'
+SpaceInEmptyParentheses: 'false'
+SpacesInAngles: 'false'
+SpacesInCStyleCastParentheses: 'false'
+SpacesInContainerLiterals: 'false'
+SpacesInParentheses: 'false'
+SpacesInSquareBrackets: 'false'
 Standard: Cpp11
+TabWidth: '2'
 UseTab: Never
+
+...
