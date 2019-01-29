@@ -10,6 +10,7 @@ AlignOperands: 'true'
 AllowShortBlocksOnASingleLine: 'true'
 AllowShortCaseLabelsOnASingleLine: 'false'
 AllowShortLoopsOnASingleLine: 'false'
+AllowShortIfStatementsOnASingleLine: 'true'
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakTemplateDeclarations: 'true'
