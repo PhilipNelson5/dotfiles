@@ -6,6 +6,7 @@
 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+  ls = ls-tree --full-tree -r --name-only HEAD
   fresh = commit -am
   stat = status
 [color]
