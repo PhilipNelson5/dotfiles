@@ -17,7 +17,7 @@ noremap <F7> <Esc>mzgg=G`zzz
 nnoremap <Leader>s mz:%s/\s\+$//<Enter>'zzz
 
 " Toggle line wrapping
-map <C-W> :set wrap!<CR>
+map <leader>sw :set wrap!<CR>
 
 " Normal movement on wrapped lines
 nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')

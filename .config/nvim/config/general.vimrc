@@ -15,8 +15,8 @@ set mouse=a
 " Keep the block cursor always
 set guicursor=
 
-" Relative line numbers
-set relativenumber
+" Relative line numbers with current line number
+set number relativenumber
 
 " More natural splits
 set splitright
