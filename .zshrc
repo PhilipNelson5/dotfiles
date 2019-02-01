@@ -88,6 +88,7 @@ alias untar='tar -xzvf'              # untar a tarball
 alias rss='newsboat'
 alias se='stack exec'
 alias sb='stack build'
+alias sink='sudo /usr/sbin/ntpdate -u 0.pool.ntp.org'
 
 function chpwd() {                   # always ls after changing directories
   emulate -L zsh
@@ -121,9 +122,7 @@ function colors() {
   done
 }
 
-function big() { urxvt -fn "xft:Noto\ Mono\ for\ Powerline:pixlesize=$1" & }
-
-function groot() {                            # go to the root directory of a git repo
+function groot() { # go to the root directory of a git repo
   emulate -L zsh
   if  [[ -e .git ]]; then
     return
