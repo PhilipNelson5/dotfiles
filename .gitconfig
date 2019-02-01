@@ -9,5 +9,6 @@
   ls = ls-tree --full-tree -r --name-only HEAD
   fresh = commit -am
   stat = status
+  s = status
 [color]
   ui = auto
