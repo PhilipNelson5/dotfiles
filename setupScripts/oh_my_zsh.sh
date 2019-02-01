@@ -8,4 +8,6 @@ git clone git://github.com/wting/autojump.git
 cd autojump
 ./install.py
 
-echo "logout to make shell changes permanent"
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┃ logout to make shell change permanent ┃"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┚"
