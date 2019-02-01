@@ -43,6 +43,13 @@ set smartcase
 " Clipboard
 set clipboard+=unnamedplus
 
+" Colors
+set termguicolors
+"colorscheme gruvbox
+colorscheme base16-default-dark
+
+
+
 " settings for netrw file explorer
 let g:netrw_banner = 1
 let g:netrw_liststyle = 3

@@ -28,9 +28,6 @@ call plug#end()
 " --------------------
 map <F4> :call CurtineIncSw()<CR>
 
-" gruvbox
-colorscheme gruvbox
-
 " NeoSolarized
 " ------------
 "colorscheme NeoSolarized
