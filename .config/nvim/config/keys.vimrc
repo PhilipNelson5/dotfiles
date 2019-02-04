@@ -98,6 +98,9 @@ autocmd Filetype cpp,hpp map <leader>g V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <
 autocmd FileType tex imap <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
 autocmd FileType tex map <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
 
+" Markdown
+autocmd FileType markdown map <leader>m :wa<CR>:!pan '%:t'<CR>
+
 " Java Script
 autocmd FileType javascript noremap <leader>f :w<CR>:!eslint --fix '%:p'<CR>
 

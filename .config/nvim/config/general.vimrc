@@ -43,12 +43,15 @@ set smartcase
 " Clipboard
 set clipboard+=unnamedplus
 
+" Line Wrap
+set wrap
+set linebreak
+
+
 " Colors
 set termguicolors
 "colorscheme gruvbox
 colorscheme base16-default-dark
-
-
 
 " settings for netrw file explorer
 let g:netrw_banner = 1
