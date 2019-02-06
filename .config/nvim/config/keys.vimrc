@@ -92,7 +92,7 @@ nnoremap yi$ F$lyt$
 nnoremap ya$ F$yf$
 
 " generate header file include guards
-autocmd Filetype cpp,hpp map <leader>g V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj
+autocmd Filetype cpp,hpp map <leader>g V:s/ /_/g<CR>V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj:nohl<CR>
 
 " LaTex
 autocmd FileType tex imap <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
