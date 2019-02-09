@@ -47,6 +47,8 @@ set clipboard+=unnamedplus
 set wrap
 set linebreak
 
+" lazy screen redraw
+set lazyredraw
 
 " Colors
 set termguicolors
