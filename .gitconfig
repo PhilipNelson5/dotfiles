@@ -12,3 +12,5 @@
   s = status
 [color]
   ui = auto
+[pager]
+	branch = false
