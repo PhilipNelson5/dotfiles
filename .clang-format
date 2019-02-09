@@ -20,7 +20,7 @@ BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterStruct: 'true'
-  SplitEmptyFunction: 'true'
+  SplitEmptyFunction: 'false'
   AfterClass: 'true'
   AfterControlStatement: 'true'
   AfterEnum: 'true'
