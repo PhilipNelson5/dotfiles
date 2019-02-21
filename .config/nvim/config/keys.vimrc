@@ -41,11 +41,14 @@ nnoremap <leader>q :q<CR>
 " Quick compiling
 nnoremap <leader>m :wa<CR>:make<CR>
 
-" Quick compiling
-nnoremap <leader>n :tabnew<CR>
+" Quick compiling in build directory
+nnoremap <leader>M :wa<CR>:make -j --directory=build --no-print-directory<CR>
 
 " Quick execute
 nnoremap <leader>r :!make run<CR>
+
+" Open a new tab
+nnoremap <leader>n :tabnew<CR>
 
 " Correct misspelled word to first suggestion
 nnoremap <Leader>z z=1<CR><CR>
