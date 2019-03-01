@@ -9,9 +9,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-  Plug 'ericcurtin/CurtineIncSw.vim'
-  Plug 'https://github.com/morhetz/gruvbox'
   "Plug 'iCyMind/NeoSolarized'
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-tidy --clang-completer --js-completer' }
+  Plug 'ericcurtin/CurtineIncSw.vim'
   Plug 'jelera/vim-javascript-syntax'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'octol/vim-cpp-enhanced-highlight'
@@ -21,13 +21,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-fugitive'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-tidy --clang-completer --js-completer' }
+  Plug 'vim-scripts/a.vim'
 
 call plug#end()
 
 " Header Source toggle
 " --------------------
-map <F4> :call CurtineIncSw()<CR>
+"map <F4> :call CurtineIncSw()<CR>
 
 " NeoSolarized
 " ------------
@@ -68,3 +68,7 @@ autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl
 " You Complete Me
 " ---------------
 let g:ycm_extra_conf_globlist = ['~/*']
+
+" a.vim
+nnoremap <F4> :A<CR>
+nnoremap <leader><F4> :AV<CR>
