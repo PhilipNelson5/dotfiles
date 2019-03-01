@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'tikhomirov/vim-glsl'
+  Plug 'tpope/vim-fugitive'
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-tidy --clang-completer --js-completer' }
 
 call plug#end()
