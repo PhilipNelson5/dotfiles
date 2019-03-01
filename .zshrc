@@ -20,7 +20,7 @@ source $ZSH/oh-my-zsh.sh
 DISABLE_UPDATE_PROMPT=true
 
 export BROWSER="google-chrome-stable"
-export EDITOR=vim
+export EDITOR=nvim
 export PAGER=less
 
 bindkey -v
@@ -51,10 +51,10 @@ alias zx='exit'                      # exits terminal
 alias q='exit'                      # exits terminal
 
 # dotfile shortcuts
-alias Xrec='vim ~/.Xresources'       # change Xresources
-alias i3rc='vim ~/.i3/config'        # change i3 config
-alias vimrc='vim ~/.vimrc'           # change vimrc
-alias zshrc='vim ~/.zshrc'           # change zshrc
+alias Xrec='$EDITR ~/.Xresources'       # change Xresources
+alias i3rc='$EDITR ~/.i3/config'        # change i3 config
+alias vimrc='$EDITR ~/.vimrc'           # change vimrc
+alias zshrc='$EDITR ~/.zshrc'           # change zshrc
 
 # fix mistakes
 alias cs='cd'                        # fix my mistakes

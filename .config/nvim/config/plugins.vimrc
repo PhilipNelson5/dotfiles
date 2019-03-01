@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jelera/vim-javascript-syntax'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'octol/vim-cpp-enhanced-highlight'
+  Plug 'PotatoesMaster/i3-vim-syntax'
   Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
   Plug 'rhysd/vim-clang-format'
   Plug 'scrooloose/nerdcommenter'

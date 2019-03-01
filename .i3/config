@@ -1,7 +1,7 @@
 # vim: filetype=i3
-
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#
 
 ##################################################
 #                   Basic Setup                  #
@@ -9,8 +9,7 @@
 
 # Set mod key (Mod1 = <Alt>, Mod4 = <Super>)
 set $mod Mod1
-set $term urxvt
-set $flash --no-startup-id bash ~/.config/scripts/flash.sh
+set $term st
 set $browser google-chrome-stable
 set $image gimp
 
@@ -31,35 +30,42 @@ workspace_auto_back_and_forth yes
 workspace_layout default
 
 # Configure border style : <normal|1pixel|pixel xx|none|pixel>
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
-# Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
-font xft:Noto Sans 10
+# Font for window titles.
+# Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-###---Dropdown/Scratchpad Windows---###
+#######################################
+#     Dropdown/Scratchpad Windows     #
+#######################################
 #First I have a tmux window used for background scripts.
 #I'll later bind this to mod+u.
 for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 625 400
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -name dropdown -e tmux
+#exec --no-startup-id $term -name dropdown -e tmux
+exec --no-startup-id $term -t dropdown -e tmux
 
-#Then I have a window running R I use for basic arithmetic
+#Then I have a window running the Julia repl I use for basic arithmetic
 #I'll later bind this to mod+a.
 for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 300
 for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
-exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e julia -q
+#exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e julia -q
+exec --no-startup-id $term  -t math -e julia -q
 
 # vimclip in a floating window
 for_window [instance="vimclip"] floating enable
 for_window [instance="vimclip"] resize set 625 400
 for_window [instance="vimclip"] move position center
+
 
 ##################################################
 #                 Basic Bindings                 #
@@ -70,9 +76,6 @@ bindsym $mod+Shift+Return    exec $term -e tmux
 
 bindsym $mod+space           focus mode_toggle
 bindsym $mod+Shift+space     floating toggle
-
-bindsym $mod+BackSpace       exec $flash
-#bindsym $mod+Shift+Backspace exec sudo reboot now
 
 bindsym $mod+Escape          workspace prev
 bindsym $mod+Shift+Escape    exec i3-msg exit
@@ -91,7 +94,8 @@ bindsym $mod+Shift+b         move container to workspace back_and_forth; workspa
 bindsym $mod+c               split horizontal
 bindsym $mod+Shift+c         reload
 
-bindsym $mod+d               exec --no-startup-id dmenu_run
+bindsym $mod+d               exec --no-startup-id dmenu_recency
+#bindsym $mod+d               exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Ctrl+d          --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Shift+d         gaps inner current set 0; gaps outer current set 0
 
@@ -167,17 +171,17 @@ bindsym $mod+Shift+y         resize shrink width 5 px or 5 ppt
 bindsym $mod+z               gaps outer current plus 5
 bindsym $mod+Shift+z         gaps outer current minus 5
 
-bindsym $mod+semicolon       exec "python ~/.config/scripts/pomodoro-client.py start"
-bindsym $mod+Ctrl+semicolon  exec "python ~/.config/scripts/pomodoro-client.py stop"
-bindsym $mod+apostrophe      exec "python ~/.config/scripts/pomodoro-client.py skip"
-bindsym $mod+doublequote     exec "python ~/.config/scripts/pomodoro-client.py toggle"
+#bindsym $mod+semicolon       exec "python ~/.config/scripts/pomodoro-client.py start"
+#bindsym $mod+Ctrl+semicolon  exec "python ~/.config/scripts/pomodoro-client.py stop"
+#bindsym $mod+apostrophe      exec "python ~/.config/scripts/pomodoro-client.py skip"
+#bindsym $mod+doublequote     exec "python ~/.config/scripts/pomodoro-client.py toggle"
 
 ##################################################
 #                Workspace Bindings              #
 ##################################################
 
-bindsym $mod+Home            workspace $ws1
-bindsym $mod+Shift+Home      move container to workspace $ws1
+#bindsym $mod+Home            workspace $ws1
+#bindsym $mod+Shift+Home      move container to workspace $ws1
 bindsym $mod+End             workspace $ws10
 bindsym $mod+Shift+End       move container to workspace $ws10
 bindsym $mod+Prior           workspace prev
@@ -234,7 +238,8 @@ set $out 4
 gaps inner $in
 gaps outer $out
 
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# Additionally, you can issue commands with the following syntax.
+# This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
 # gaps inner all set 10
 # gaps outer all plus 5
@@ -392,7 +397,7 @@ mode "resize" {
 ##################################################
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore; sleep 1 #; compton -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -417,8 +422,8 @@ exec_always --no-startup-id fix_xcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-  #status_command i3status
-  status_command ~/.config/scripts/i3status.sh
+  status_command i3status
+  #status_command ~/.config/scripts/i3status.sh
   position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
