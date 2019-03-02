@@ -33,7 +33,7 @@ nnoremap <leader>a :wa<CR>
 
 " Quick file edit
 "   run fzf
-nnoremap <Leader>e :FZF<CR>
+nnoremap <Leader>e :up<CR>:FZF<CR>
 
 " Quick quitting
 nnoremap <leader>q :q<CR>

@@ -72,4 +72,4 @@ let g:ycm_extra_conf_globlist = ['~/*']
 
 " a.vim
 nnoremap <F4> :A<CR>
-nnoremap <leader><F4> :AV<CR>
+nnoremap <F5> :AV<CR>

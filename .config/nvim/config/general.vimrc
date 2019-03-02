@@ -55,6 +55,9 @@ set termguicolors
 "colorscheme gruvbox
 colorscheme base16-default-dark
 
+" Toggle paste mode
+set pastetoggle=<F1>
+
 " settings for netrw file explorer
 let g:netrw_banner = 1
 let g:netrw_liststyle = 3
@@ -67,3 +70,12 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   let $FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 endif
+
+if has('persistent_undo')
+  set undodir=~/.config/nvim/undo//
+  set undofile          " Persistent undo on
+  set undolevels=1000   " Maximum number of changes that can be undone
+  set undoreload=10000  " Maximum number lines to save for undo on a buffer reload
+endif
+set backupdir=~/.config/nvim/backup//
+set directory=~/.config/nvim/swp//
