@@ -69,6 +69,7 @@ autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl
 " You Complete Me
 " ---------------
 let g:ycm_extra_conf_globlist = ['~/*']
+g:ycm_collect_identifiers_from_tags_files = 1
 
 " a.vim
 nnoremap <F4> :A<CR>
