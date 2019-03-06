@@ -10,11 +10,17 @@ noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>:lcd $HOME/.config/nvim/config<CR>
 " Auto curly braces
 inoremap <F2> {<Esc>o}<Esc>O
 
+inoremap <F9> :up<CR>:cp<CR>
+inoremap <F10> :up<CR>:cn<CR>
+
 " Generic indentation formatting
 noremap <F7> <Esc>mzgg=G`zzz
 
 " Remove trailing white space
-nnoremap <Leader>s mz:%s/\s\+$//<Enter>'zzz
+nnoremap <Leader>s mz:%s/\s\+$//<CR>'zzz
+
+" [R]eplace [W]ord under cursor
+nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 
 " Toggle line wrapping
 nnoremap <leader>sw :set wrap!<CR>
@@ -95,7 +101,7 @@ nnoremap yi$ F$lyt$
 nnoremap ya$ F$yf$
 
 " generate header file include guards
-autocmd Filetype cpp,hpp map <leader>g V:s/ /_/g<CR>V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj:nohl<CR>
+autocmd Filetype cpp,hpp map <leader>g V:s/ /_/ge<CR>V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj:nohl<CR>
 
 " For You Complete Me
 " Fix It
