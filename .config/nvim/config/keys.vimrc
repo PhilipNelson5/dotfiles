@@ -103,6 +103,9 @@ command! MakeTags !ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 
+" [F]ind [U]sage of word under cursor
+command! FU grep -R <cword> .
+
 " For You Complete Me
 " Fix It
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
