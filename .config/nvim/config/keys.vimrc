@@ -100,12 +100,31 @@ nnoremap va$ F$vf$
 nnoremap yi$ F$lyt$
 nnoremap ya$ F$yf$
 
+"auto begin( ), end( ) for std::algorithms
+nnoremap <Leader>be ciwstd::begin(<ESC>pa), std::end(<ESC>pa),
+
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" [F]ind [U]sage of word under cursor
+command! FU grep -R <cword> .
+
 " generate header file include guards
 autocmd Filetype cpp,hpp map <leader>g V:s/ /_/ge<CR>V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj:nohl<CR>
 
 " For You Complete Me
 " Fix It
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
+
+"=============================================================================="
+"============================ [ File Type Specific ] =========================="
+"=============================================================================="
+
+" generate header file include guards
+autocmd Filetype cpp,hpp map <leader>g V:s/ /_/g<CR>V~"ad$i#ifndef <ESC>"apa_HPP<CR>#define <ESC>"apa_HPP<ESC>mmGo<CR>#endif<ESC>'mj:nohl<CR>
 
 " LaTex
 autocmd FileType tex imap <F3> <ESC>:w<CR> :!pdflatex '%:t'<CR>
