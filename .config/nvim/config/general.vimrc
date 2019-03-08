@@ -50,6 +50,9 @@ set linebreak
 " lazy screen redraw
 set lazyredraw
 
+" automatically read a file if it is changed on the disk
+set autoread
+
 " Colors
 set termguicolors
 "colorscheme gruvbox
