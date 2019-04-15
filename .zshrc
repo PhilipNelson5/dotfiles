@@ -1,4 +1,5 @@
 # source ~/.zshrc
+ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/philip/.oh-my-zsh
@@ -7,7 +8,7 @@ export ZSH=/home/philip/.oh-my-zsh
 export PATH=$PATH:/home/philip/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
-
+export PATH=$PATH:$HOME/.local/bin
 # Path to Android SKD
 export ANDROID_HOME=/opt/android
 
@@ -128,6 +129,8 @@ function groot() { # go to the root directory of a git repo
     return
   elif [[ $(pwd) == $HOME ]]; then
     return
+  elif [[ $(pwd) == "/" ]]; then
+    return
   else
     cd ..
     groot
@@ -135,10 +138,10 @@ function groot() { # go to the root directory of a git repo
 }
 
 function swap() {
-    local TMPFILE=tmp.$$
-    mv "$1" $TMPFILE
-    mv "$2" "$1"
-    mv $TMPFILE "$2"
+  local TMPFILE=tmp.$$
+  mv "$1" $TMPFILE
+  mv "$2" "$1"
+  mv $TMPFILE "$2"
 }
 
 [[ -s /home/philip/.autojump/etc/profile.d/autojump.sh ]] && source /home/philip/.autojump/etc/profile.d/autojump.sh

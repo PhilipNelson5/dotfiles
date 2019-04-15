@@ -71,5 +71,5 @@ autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl
 let g:ycm_extra_conf_globlist = ['~/*']
 
 " a.vim
-nnoremap <F4> :A<CR>
-nnoremap <F5> :AV<CR>
+nnoremap <F4> :up<CR>:A<CR>
+nnoremap <F5> :up<CR>:AV<CR>
