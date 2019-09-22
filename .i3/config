@@ -59,7 +59,7 @@ for_window [instance="math"] resize set 800 300
 for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
 #exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e julia -q
-exec --no-startup-id $term  -t math -e julia -q
+#exec --no-startup-id $term  -t math -e julia -q
 
 # vimclip in a floating window
 for_window [instance="vimclip"] floating enable

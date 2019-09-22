@@ -59,6 +59,8 @@ nnoremap <leader>n :tabnew<CR>
 " Correct misspelled word to first suggestion
 nnoremap <Leader>z z=1<CR><CR>
 
+nnoremap <Leader>Z l[sz=1<CR><CR>
+
 " Move to the beginning and end of a line
 noremap L $
 noremap H ^

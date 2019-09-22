@@ -14,7 +14,7 @@ export ANDROID_HOME=/opt/android
 
 ZSH_THEME="agnoster"
 
-plugins=(autojump, extract)
+plugins=(extract)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,7 +26,7 @@ export PAGER=less
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-
+unsetopt autopushd
 ########################################################################
 #                               Aliases                                #
 ########################################################################
