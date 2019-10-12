@@ -149,3 +149,5 @@ function swap() {
 autoload -U compinit && compinit -u
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias socks='clear;echo "ssh pihole -D 5168 -Nq";ssh pihole -D 5168 -Nq'
