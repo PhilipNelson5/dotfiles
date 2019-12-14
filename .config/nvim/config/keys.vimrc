@@ -10,8 +10,9 @@ noremap <F12>  <Esc>:tabnew $MYVIMRC<CR>:lcd $HOME/.config/nvim/config<CR>
 " Auto curly braces
 inoremap <F2> {<Esc>o}<Esc>O
 
-inoremap <F9> :up<CR>:cp<CR>
-inoremap <F10> :up<CR>:cn<CR>
+" next / prev error or search result
+noremap <F9> :up<CR>:cp<CR>
+noremap <F10> :up<CR>:cn<CR>
 
 " Generic indentation formatting
 noremap <F7> <Esc>mzgg=G`zzz
@@ -137,6 +138,8 @@ autocmd FileType markdown map <leader>m :wa<CR>:!pan '%:t'<CR>
 
 " Java Script
 autocmd FileType javascript noremap <leader>f :w<CR>:!eslint --fix '%:p'<CR>
+
+autocmd Filetype python nnoremap <leader>p :up<CR>:!python %<CR>
 
 " automatically adds the correct shebang to script files
 augroup Shebang
