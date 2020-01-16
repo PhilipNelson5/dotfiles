@@ -16,3 +16,5 @@
   ui = auto
 [pager]
 	branch = false
+[core]
+	autocrlf = input

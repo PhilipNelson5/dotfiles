@@ -9,6 +9,10 @@ export PATH=$PATH:/home/philip/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH="/home/philip/.pyenv/bin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 # Path to Android SKD
 export ANDROID_HOME=/opt/android
 
@@ -82,7 +86,6 @@ alias push='~/scripts/push.sh'       # push to the current git branch
 # some program shortcuts
 alias image='viewnior'               # for opening images
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
-alias python='python3'               # default to python3
 alias r='ranger'                     # run ranger
 alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
 alias untar='tar -xzvf'              # untar a tarball
