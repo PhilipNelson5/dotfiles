@@ -9,15 +9,16 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+  "Plug 'PotatoesMaster/i3-vim-syntax'
   "Plug 'iCyMind/NeoSolarized'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-tidy --clang-completer --js-completer' }
+  Plug 'PotatoesMaster/i3-vim-syntax'
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --js-completer --rust-completer --enable-coverage' }
   Plug 'ericcurtin/CurtineIncSw.vim'
   Plug 'jelera/vim-javascript-syntax'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'othree/html5.vim'
   Plug 'pangloss/vim-javascript'
-  Plug 'PotatoesMaster/i3-vim-syntax'
   Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
   Plug 'rhysd/vim-clang-format'
   Plug 'scrooloose/nerdcommenter'
