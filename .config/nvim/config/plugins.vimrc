@@ -58,6 +58,9 @@ autocmd Filetype cpp,hpp map <leader>f <Esc>:ClangFormat<CR>
 " NERD Commenter
 " --------------
 filetype plugin on
+inoremap <C-_> <C-o>:call NERDComment(0,"toggle")<CR>
+vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
 " NERD Tree
 " ---------
