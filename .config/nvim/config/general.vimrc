@@ -43,6 +43,9 @@ set smartcase
 " Clipboard
 set clipboard+=unnamedplus
 
+" No bell
+set visualbell
+
 " Line Wrap
 set wrap
 set linebreak

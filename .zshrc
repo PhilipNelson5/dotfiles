@@ -2,17 +2,20 @@
 ZSH_DISABLE_COMPFIX=true
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/philip/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Extra paths
-export PATH=$PATH:/home/philip/node_modules/.bin
+export PATH=$PATH:$HOME/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.local/bin
-export PATH="/home/philip/.pyenv/bin:$PATH"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if type pyenv > /dev/null; then
+  export PATH=$HOME/.pyenv/bin:$PATH
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 # Path to Android SKD
 export ANDROID_HOME=/opt/android
 
@@ -31,6 +34,7 @@ export PAGER=less
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 unsetopt autopushd
+
 ########################################################################
 #                               Aliases                                #
 ########################################################################
@@ -47,12 +51,12 @@ unsetopt autopushd
 [ -z "$PS1" ] && return # only for interactive mode
 
 # vim style!
-alias :e='vim'                       # edit a file
+alias :e='nvim'                       # edit a file
 alias :q='exit'                      # close the terminal
+alias vim='nvim'
 
 alias bye='sudo shutdown now'        # shutdown system
 alias c='clear'                      # clear terminal
-alias zx='exit'                      # exits terminal
 alias q='exit'                      # exits terminal
 
 # dotfile shortcuts
@@ -66,12 +70,9 @@ alias cs='cd'                        # fix my mistakes
 alias maek='make'                    # fix my mistakes
 alias sl='ls'                        # fix my mistakes
 
-alias please='sudo $(fc -ln -1)'     # run last command with elevated privileges if you ask nicely
-alias plz='sudo $(fc -ln -1)'        # run last command with elevated privileges if you ask nicely
 alias pls='sudo $(fc -ln -1)'        # run last command with elevated privileges if you ask nicely
 
 # colors
-alias color='colorize'
 alias dir='dir --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -84,7 +85,6 @@ alias update='~/scripts/update.sh'   # update packages
 alias push='~/scripts/push.sh'       # push to the current git branch
 
 # some program shortcuts
-alias image='viewnior'               # for opening images
 alias intellij='/opt/idea-IU-163.11103.6/bin/idea.sh&' # launch intellij from terminal
 alias r='ranger'                     # run ranger
 alias render='markdown-pdf -s ~/github.css' # render markdown to pdfs with github style sheet
@@ -93,6 +93,9 @@ alias rss='newsboat'
 alias se='stack exec'
 alias sb='stack build'
 alias sink='sudo /usr/sbin/ntpdate -u 0.pool.ntp.org'
+
+alias weekly='~/scripts/weekly_report.sh'
+alias socks='clear;echo "ssh pihole -D 5168 -Nq";ssh pihole -D 5168 -Nq'
 
 function chpwd() {                   # always ls after changing directories
   emulate -L zsh
@@ -147,10 +150,9 @@ function swap() {
   mv $TMPFILE "$2"
 }
 
-[[ -s /home/philip/.autojump/etc/profile.d/autojump.sh ]] && source /home/philip/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias socks='clear;echo "ssh pihole -D 5168 -Nq";ssh pihole -D 5168 -Nq'
