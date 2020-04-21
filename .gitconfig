@@ -1,20 +1,21 @@
 [user]
-  email = PhilipNelson5@gmail.com
-  name = Philip Nelson
+	email = PhilipNelson5@gmail.com
+	name = Philip Nelson
+
 [log]
-  decorate = true
+	decorate = true
 
 [alias]
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
-  ls = ls-tree --full-tree -r --name-only HEAD
-  fresh = commit -am
-  co = checkout
-  ci = commit
-  stat = status
-  s = status
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+	ls = ls-tree --full-tree -r --name-only HEAD
+	fresh = commit -am
+	s = status
+
 [color]
-  ui = auto
+	ui = auto
+
 [pager]
 	branch = false
+
 [core]
 	autocrlf = input
