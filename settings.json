@@ -1,0 +1,4 @@
+{
+    "vscode-neovim.useWSL": true,
+    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim/bin/nvim"
+}

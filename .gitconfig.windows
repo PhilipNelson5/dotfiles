@@ -1,0 +1,29 @@
+[user]
+	email = 
+	name = 
+
+[log]
+	decorate = true
+
+[alias]
+	# get the main branch
+	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+	# getter log
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+	# list all the files tracked by git
+	ls = ls-tree --full-tree -r --name-only HEAD
+	# simplified status with branch name
+	s = status -sb
+	# Lists the files with the most churn
+	churn = !git --no-pager log --name-only --oneline | grep -v ' ' | sort | uniq -c | sort -nr | head
+	# Deletes all branches merged into the specified branch (or the default branch if no branch is specified)
+	bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs git branch -d; }; f"
+	# Show list of files in a conflict state.
+	conflicts = !git diff --name-only --diff-filter=U
+
+[pager]
+	branch = false
+[core]
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+[init]
+	defaultBranch = main
