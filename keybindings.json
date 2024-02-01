@@ -2,6 +2,22 @@
 [
   // Better Navigation
   {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown"
+  },
+  {
     "key": "ctrl+k",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
@@ -42,5 +58,5 @@
     "key": "shift+k",
     "command": "editor.action.showHover",
     "when": "editorTextFocus"
-  },
+  }
 ]

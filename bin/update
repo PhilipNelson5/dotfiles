@@ -1,0 +1,199 @@
+#!/usr/bin/env bash
+
+function main() {
+  if [[ $# != 1 ]]; then
+    echo "What do you want to update?"
+    exit 1
+  fi
+
+  case $1 in
+  nvim | neovim)
+    update_neovim
+    return
+    ;;
+  lg | lazygit)
+    update_lazygit
+    return
+    ;;
+  shellcheck)
+    update_shellcheck
+    return
+    ;;
+  dive)
+    update_dive
+    return
+    ;;
+  gql)
+    update_gql
+    return
+    ;;
+  *) echo "$1 not supported" ;;
+  esac
+}
+
+function get_latest_version() {
+  local API="https://api.github.com"
+  local URL="$API/repos/$1/releases/latest"
+  curl -Ss "$URL" | jq '.tag_name'
+}
+
+function check_continue() {
+  echo Current Version: "$1"
+  echo Latest Version: "$2"
+  [[ $1 == "$2" ]] && exit
+  read -rp "Update (y/N): " CONTINUE
+
+  [[ -z $CONTINUE ]] && exit
+  [[ ${CONTINUE,,} == 'n' ]] && exit
+}
+
+function check_checksum() {
+  if ! sha256sum --check --ignore-missing "$1"; then
+    echo Failed checksum...
+    exit 1
+  fi
+}
+
+function update_neovim() {
+  CURRENT_V=$(/opt/nvim/bin/nvim --version | head -n 1)
+  STABLE_V=$(curl -Ss https://github.com/neovim/neovim/releases/tag/stable | grep -oP 'NVIM v\d+\.\d+\.\d+' | head -n 1)
+
+  check_continue "$CURRENT_V" "$STABLE_V"
+
+  TMP=$(mktemp -d)
+  pushd "$TMP" > /dev/null || exit 1
+
+  wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+  wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz.sha256sum
+  check_checksum nvim-linux64.tar.gz.sha256sum
+
+  tar xf nvim-linux64.tar.gz
+  sudo rm -rf /opt/nvim
+  sudo mv nvim-linux64 /opt/nvim
+
+  popd > /dev/null || exit 1
+
+  rm -rf "$TMP"
+
+  /opt/nvim/bin/nvim --version
+}
+
+function update_lazygit() {
+  bin_path=/usr/local/bin/lazygit
+  version_regex='version=(\d+\.\d+\.\d+)'
+  github_path=jesseduffield/lazygit
+  CURRENT_V=$($bin_path --version | perl -ne "m/${version_regex}/ && print \$1")
+  LATEST_V=$(get_latest_version "${github_path}")
+  LATEST_V=${LATEST_V##\"v}
+  LATEST_V=${LATEST_V%%\"}
+  archive_name=lazygit_${LATEST_V}_Linux_x86_64.tar.gz
+
+  check_continue "$CURRENT_V" "$LATEST_V"
+
+  TMP=$(mktemp -d)
+  pushd "$TMP" > /dev/null || exit 1
+
+  wget "https://github.com/${github_path}/releases/download/v${LATEST_V}/${archive_name}"
+  wget "https://github.com/${github_path}/releases/download/v${LATEST_V}/checksums.txt"
+  check_checksum checksums.txt
+
+  tar xf "$archive_name"
+  sudo mv lazygit $bin_path
+
+  popd > /dev/null || exit 1
+
+  rm -rf "$TMP"
+
+  $bin_path --version
+}
+
+function update_shellcheck() {
+  bin_path=/usr/local/bin/shellcheck
+  version_regex='version: (\d+\.\d+\.\d+)'
+  github_path="koalaman/shellcheck"
+  CURRENT_V=$($bin_path --version | perl -ne "m/${version_regex}/ && print \$1")
+  LATEST_V=$(get_latest_version ${github_path})
+  archive_name=shellcheck-v${LATEST_V}.linux.x86_64.tar.xz
+  LATEST_V=${LATEST_V##\"v}
+  LATEST_V=${LATEST_V%%\"}
+
+  check_continue "$CURRENT_V" "$LATEST_V"
+
+  TMP=$(mktemp -d)
+  pushd "$TMP" > /dev/null || exit 1
+
+  wget "https://github.com/${github_path}/releases/download/v${LATEST_V}/${archive_name}"
+
+  tar xf "$archive_name"
+  sudo mv "shellcheck-v${LATEST_V}/shellcheck" $bin_path
+
+  popd > /dev/null || exit 1
+
+  rm -rf "$TMP"
+
+  $bin_path --version
+}
+
+function update_dive() {
+  bin_path=/usr/local/bin/dive
+  version_regex='dive (\d+\.\d+\.\d+)'
+  github_path="wagoodman/dive"
+  CURRENT_V=$($bin_path --version | perl -ne "m/${version_regex}/ && print \$1")
+  LATEST_V=$(get_latest_version ${github_path})
+  archive_name=dive_${LATEST_V}_linux_amd64.tar.gz
+  checksum_file=dive_${LATEST_V}_checksums.txt
+  LATEST_V=${LATEST_V##\"v}
+  LATEST_V=${LATEST_V%%\"}
+
+  check_continue "$CURRENT_V" "$LATEST_V"
+
+  TMP=$(mktemp -d)
+  pushd "$TMP" > /dev/null || exit 1
+
+  wget "https://github.com/${github_path}/releases/download/v${LATEST_V}/${archive_name}"
+  wget "https://github.com/${github_path}/releases/download/v${LATEST_V}/${checksum_file}"
+  check_checksum "${checksum_file}"
+
+  tar xf "$archive_name"
+  sudo mv "dive" $bin_path
+
+  popd > /dev/null || exit 1
+
+  rm -rf "$TMP"
+
+  $bin_path --version
+}
+
+function update_gql() {
+  bin_path=/usr/local/bin/gql
+  version_regex='gitql-cli (\d+\.\d+\.\d+)'
+  github_path="AmrDeveloper/GQL"
+  CURRENT_V=$($bin_path --version | perl -ne "m/${version_regex}/ && print \$1")
+  LATEST_V=$(get_latest_version ${github_path})
+  archive_name=gql-x86_64-linux.gz
+  checksum_file=gql-x86_64-linux.gz.sha256
+  LATEST_V=${LATEST_V##\"}
+  LATEST_V=${LATEST_V%%\"}
+
+  check_continue "$CURRENT_V" "$LATEST_V"
+
+  TMP=$(mktemp -d)
+  pushd "$TMP" > /dev/null || exit 1
+
+  wget "https://github.com/${github_path}/releases/download/${LATEST_V}/${archive_name}"
+  wget "https://github.com/${github_path}/releases/download/${LATEST_V}/${checksum_file}"
+  sed -i "1 s/\$/ ${archive_name}/" ${checksum_file}
+  check_checksum ${checksum_file}
+
+  gunzip "$archive_name"
+  chmod +x "$archive_name"
+  sudo mv "gql-x86_64-linux" $bin_path
+
+  popd > /dev/null || exit 1
+
+  rm -rf "$TMP"
+
+  $bin_path --version
+}
+
+main "${@}"

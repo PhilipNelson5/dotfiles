@@ -1,4 +1,122 @@
 {
-    "vscode-neovim.useWSL": true,
-    "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim/bin/nvim"
+  "shellformat.path": "/usr/local/bin/shfmt",
+  "shellformat.flag": "-i=2 -bn -sr",
+  "vscode-neovim.useWSL": true,
+  "vscode-neovim.neovimExecutablePaths.linux": "/opt/nvim/bin/nvim",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "cmake.configureOnOpen": true,
+  "editor.minimap.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "cSpell.userWords": [
+    "ccmake",
+    "cmds",
+    "Constexpr",
+    "Keycloak",
+    "minio",
+    "sonarqube",
+    "structs",
+    "typedefs"
+  ],
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "zenMode.centerLayout": false,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "workbench.colorTheme": "Default Dark+",
+  "git.ignoreMissingGitWarning": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "clang-format.executable": "/home/pnelson/DEV/OTHER/llvm-project/build/bin/clang-format",
+  "editor.formatOnSave": true,
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "",
+  "vscode-neovim.neovimExecutablePaths.win32": "",
+  "vscode-neovim.logLevel": "debug",
+  "MATLAB.telemetry": false,
+  "MATLAB.matlabConnectionTiming": "never",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "yaml.format.printWidth": 100,
+  "prettier.printWidth": 110,
+  "autoDocstring.customTemplatePath": "/home/pnelson/doxygen.mustache",
+  "editor.semanticHighlighting.enabled": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "markdown.extension.italic.indicator": "_",
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "elixir",
+    "erlang",
+    "git-commit",
+    "go",
+    "graphql",
+    "handlebars",
+    "haskell",
+    "html",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "jupyter",
+    "latex",
+    "less",
+    "markdown",
+    "php",
+    "plaintext",
+    "python",
+    "pug",
+    "restructuredtext",
+    "rust",
+    "scala",
+    "scss",
+    "scminput",
+    "swift",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "yaml",
+    "yml",
+    "sh"
+  ],
+  "cmake.options.statusBarVisibility": "visible",
+  "remote.autoForwardPortsSource": "hybrid",
+  "syntax.highlightLanguages": [
+    // "c",
+    // "cpp",
+    // "python",
+    // "typescript",
+    // "typescriptreact",
+    // "javascript",
+    // "go",
+    // "rust",
+    // "php",
+    // "ruby",
+    // "shellscript",
+    // "ocaml",
+    // "lua"
+  ]
 }
