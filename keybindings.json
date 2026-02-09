@@ -53,10 +53,4 @@
     "command": "selectPrevSuggestion",
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
-  // Open hover menu on cursor
-  {
-    "key": "shift+k",
-    "command": "editor.action.showHover",
-    "when": "editorTextFocus"
-  }
 ]

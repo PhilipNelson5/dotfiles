@@ -2,6 +2,11 @@ if vim.g.vscode then
     vim.opt.syntax = "off"
     vim.keymap.set("n", "<Tab>", ":Tabnext<CR>")
     vim.keymap.set("n", "<S-Tab>", ":Tabprev<CR>")
+
+    keymap("n", "<Space>", "", opts)
+    vim.g.mapleader = " "
+    vim.g.maplocalleader = " "
+    keymap({"n"}, "<leader>f", "<cmd>lua require('vscode').action('workbench.files.action.focusFilesExplorer')<CR>")
     return
 end
 
