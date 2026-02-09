@@ -1,57 +1,81 @@
 [user]
-	email = philip.nelson@sdl.usu.edu
 	name = Philip Nelson
-
-[log]
-	decorate = true
 
 [alias]
 	d = diff
 	pl = pull
 	co = checkout
 	cb = checkout -b
+	br = branch
+	sup = submodule update --recursive
 	amend = commit --amend --no-edit
-	see = "!f() { git show $1:$2 | bat --language ${2##*.}; }; f"
-	# get the main branch
-	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
-	# getter log
+
+	# show a file from a specific commit
+	see = "!f() { git show $1:$2 | bat --language ${2##*.} | cat -n; }; f"
+
+	# add the staged files to a given commit. e.g. git add .; git fixup cb5bf9
+	fixup = "!f() { git commit --fixup $1 && git rebase --autosquash ${1}~1; }; f"
+
+	# squash all the history into one commit. e.g. git squash; git commit
+	squash = !git reset --soft $(git merge-base master $(git rev-parse --abbrev-ref HEAD))
+
+	# better log
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset - %Cblue%an%Creset' --abbrev-commit --date=relative
+
 	# list all the files tracked by git
 	ls = ls-tree --full-tree -r --name-only HEAD
+
 	# simplified status with branch name
 	s = status -sb
-	# Lists the files with the most churn
+
+	# list the files with the most churn (most often changed files)
 	churn = !git --no-pager log --name-only --oneline | grep -v ' ' | sort | uniq -c | sort -nr | head
-	# Deletes all branches merged into the specified branch (or the default branch if no branch is specified)
+
+	# get the default branch
+	default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+
+	# delete all branches merged into the given branch (or the default branch if no branch is specified)
 	bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs git branch -d; }; f"
-	# Show list of files in a conflict state.
+
+	# show the list of files in a conflict state.
 	conflicts = !git diff --name-only --diff-filter=U
-	# Display all dangling commits
+
+	# show all dangling commits
 	show-reflog = "!git log --graph --all --numstat --oneline --decorate --full-history --date-order --color $(git fsck | grep dangling | awk '{print $3;}')"
 
+	# highest quality git blame
+	bl = blame -w -C -C -C --color-lines
+
+	#difft = difft --display inline
+	difft = -c "diff.external='difft --display inline'" diff
+
+[log]
+	decorate = true
 [pager]
 	branch = false
-
 [credential]
 	helper = cache --timeout=28800
-
 [init]
 	defaultBranch = main
-
-[includeIf "gitdir:~/DEV/OTHER/"]
-	path = ~/.gitconfig-personal
-
-[includeIf "gitdir:~/DEV/SENTINEL/"]
-	path = ~/.gitconfig-sentinel
-
-; [includeIf "hasconfig:remote.*.url:git@isrhub.usurf.usu.edu*/**"]
-[includeIf "gitdir:~/DEV/EMMA/"]
-	path = ~/.gitconfig-isrhub
-[includeIf "gitdir:~/DEV/SDL/"]
-	path = ~/.gitconfig-isrhub
-
-[includeIf "gitdir:~/DEV/SENTINEL_ADMIN/"]
-	path = ~/.gitconfig-sentinel-admin
-
-[includeIf "gitdir:~/DEV/SANDBOX/"]
-	path = ~/.gitconfig-sandbox
+[core]
+	sshCommand = 'C:/Program Files/OpenSSH/ssh.exe'
+	autocrlf = false
+	editor=vim
+[push]
+	autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rebase]
+	updateRefs = true
+[include]
+	path = ~/.gitconfig.toa
+	path = ~/.gitconfig.work
+[includeIf "gitdir:~/Dev/public/"]
+	path = ~/.gitconfig.public
+[includeIf "gitdir:~/Dev/personal/"]
+	path = ~/.gitconfig.public
+# [submodule]
+	# recurse = true

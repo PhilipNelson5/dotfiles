@@ -1,0 +1,11 @@
+[commit]
+	gpgsign = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = C:\\Users\\Philip\\.config\\git\\allowed_signers.toa
+
+[user]
+	signingkey = ~/.ssh/id_ed25519_toa.pub
