@@ -2,49 +2,100 @@ Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
 Set-Alias vim nvim
 Set-Alias lg lazygit
 
+function reload {
+  . $PROFILE
+  Write-Host "PowerShell profile reloaded!" -ForegroundColor Cyan
+}
 function push { git push $args }
 function pull { git pull $args }
 function path { $env:path -split ";" }
 function which { (Get-Command $args).Definition }
 function mkdocs { docker run --rm -it -p 8000:8000 -v ${PWD}:/docs gitlab.tenonespace.com:5001/devops/docker-images/mkdocs:0.1.7 $args }
-function reload {
-    . $PROFILE
-    Write-Host "PowerShell profile reloaded!" -ForegroundColor Cyan
-}
-function time {
-    $Command = "$args"
-    Measure-Command {
-        Invoke-Expression $Command 2>&1 | Out-Default
+
+# Unix-like commands
+if (Get-Alias rm -ErrorAction SilentlyContinue) { Remove-Item Alias:rm -Force }
+function rm {
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromPipeline = $true, Position = 0, Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [string[]]$Path,
+        [Alias("r")]
+        [switch]$Recursive,
+        [Alias("f")]
+        [switch]$Force,
+        [switch]$rf
+    )
+    process {
+        $rmArgs = @{}
+        if ($Recursive -or $rf) { $rmArgs["Recurse"] = $true }
+        if ($Force -or $rf) {
+            $rmArgs["Force"] = $true
+            $rmArgs["ErrorAction"] = "SilentlyContinue"
+        }
+        Remove-Item -Path $Path @rmArgs
     }
 }
+
+function touch {
+  [CmdletBinding()]
+  param(
+    [Parameter(ValueFromPipeline = $true, Position = 0, Mandatory = $true, ValueFromRemainingArguments = $true)]
+    [string[]]$Path
+  )
+  process {
+      foreach ($p in $Path) {
+          if (Test-Path $p) {
+              (Get-Item $p).LastWriteTime = Get-Date
+          }
+          else {
+              New-Item -Path $p -ItemType File -Force | Out-Null
+          }
+      }
+  }
+
+}
+
+function mktemp {
+  $tempFileName = [System.IO.Path]::GetTempFileName()
+  Remove-Item -Path $tempFileName -Force
+  New-Item -Path $tempFileName -ItemType Directory | Out-Null
+  Set-Location $tempFileName
+}
+
+function time {
+  $Command = "$args"
+  Measure-Command {
+    Invoke-Expression $Command 2>&1 | Out-Default
+  }
+}
+
 function open {
-    param(
-        [Parameter(ValueFromPipeline = $true, Position = 0)]
-        [string]$Path = "."
-    )
+  param(
+    [Parameter(ValueFromPipeline = $true, Position = 0)]
+    [string]$Path = "."
+  )
 
-    # 1. Resolve the path to get the full system path
-    $resolvedPath = Resolve-Path $Path -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path
+  # 1. Resolve the path to get the full system path
+  $resolvedPath = Resolve-Path $Path -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path
 
-    # 2. Fallback if Resolve-Path fails (e.g., a file that hasn't been saved yet)
-    if (-not $resolvedPath) { $resolvedPath = $Path }
+  # 2. Fallback if Resolve-Path fails (e.g., a file that hasn't been saved yet)
+  if (-not $resolvedPath) { $resolvedPath = $Path }
 
-    # 3. Check if the path exists
-    if (Test-Path $resolvedPath) {
-        if (Test-Path $resolvedPath -PathType Container) {
-            # It's a folder: Open in File Explorer
-            Start-Process "explorer.exe" -ArgumentList "`"$resolvedPath`""
-        }
-        else {
-            # It's a file: Open with the default associated program
-            Start-Process $resolvedPath
-        }
+  # 3. Check if the path exists
+  if (Test-Path $resolvedPath) {
+    if (Test-Path $resolvedPath -PathType Container) {
+      # It's a folder: Open in File Explorer
+      Start-Process "explorer.exe" -ArgumentList "`"$resolvedPath`""
     }
     else {
-        Write-Error "The path '$Path' doesn't exist."
+      # It's a file: Open with the default associated program
+      Start-Process $resolvedPath
     }
+  }
+  else {
+    Write-Error "The path '$Path' doesn't exist."
+  }
 }
-
 
 # Zoxide
 if (Get-Command zoxide) {
@@ -54,13 +105,6 @@ if (Get-Command zoxide) {
 # FzF
 if (Get-Module -ListAvailable -Name PsFzf) {
   Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-}
-
-function mktemp {
-  $tempFileName = [System.IO.Path]::GetTempFileName()
-  Remove-Item -Path $tempFileName -Force
-  New-Item -Path $tempFileName -ItemType Directory | Out-Null
-  Set-Location $tempFileName
 }
 
 # Python Venv
