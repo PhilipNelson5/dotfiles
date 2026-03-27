@@ -12,7 +12,7 @@ function path { $env:path -split ";" }
 function which { (Get-Command $args).Definition }
 function mkdocs { docker run --rm -it -p 8000:8000 -v ${PWD}:/docs gitlab.tenonespace.com:5001/devops/docker-images/mkdocs:0.1.7 $args }
 
-# Unix-like commands
+# POSIX-like commands
 if (Get-Alias rm -ErrorAction SilentlyContinue) { Remove-Item Alias:rm -Force }
 function rm {
     [CmdletBinding()]
