@@ -15,25 +15,25 @@ function mkdocs { docker run --rm -it -p 8000:8000 -v ${PWD}:/docs gitlab.tenone
 # POSIX-like commands
 if (Get-Alias rm -ErrorAction SilentlyContinue) { Remove-Item Alias:rm -Force }
 function rm {
-    [CmdletBinding()]
-    param(
-        [Parameter(ValueFromPipeline = $true, Position = 0, Mandatory = $true, ValueFromRemainingArguments = $true)]
-        [string[]]$Path,
-        [Alias("r")]
-        [switch]$Recursive,
-        [Alias("f")]
-        [switch]$Force,
-        [switch]$rf
-    )
-    process {
-        $rmArgs = @{}
-        if ($Recursive -or $rf) { $rmArgs["Recurse"] = $true }
-        if ($Force -or $rf) {
-            $rmArgs["Force"] = $true
-            $rmArgs["ErrorAction"] = "SilentlyContinue"
-        }
-        Remove-Item -Path $Path @rmArgs
+  [CmdletBinding()]
+  param(
+    [Parameter(ValueFromPipeline = $true, Position = 0, Mandatory = $true, ValueFromRemainingArguments = $true)]
+    [string[]]$Path,
+    [Alias("r")]
+    [switch]$Recursive,
+    [Alias("f")]
+    [switch]$Force,
+    [switch]$rf
+  )
+  process {
+    $rmArgs = @{}
+    if ($Recursive -or $rf) { $rmArgs["Recurse"] = $true }
+    if ($Force -or $rf) {
+      $rmArgs["Force"] = $true
+      $rmArgs["ErrorAction"] = "SilentlyContinue"
     }
+    Remove-Item -Path $Path @rmArgs
+  }
 }
 
 function touch {
@@ -43,14 +43,14 @@ function touch {
     [string[]]$Path
   )
   process {
-      foreach ($p in $Path) {
-          if (Test-Path $p) {
-              (Get-Item $p).LastWriteTime = Get-Date
-          }
-          else {
-              New-Item -Path $p -ItemType File -Force | Out-Null
-          }
+    foreach ($p in $Path) {
+      if (Test-Path $p) {
+        (Get-Item $p).LastWriteTime = Get-Date
       }
+      else {
+        New-Item -Path $p -ItemType File -Force | Out-Null
+      }
+    }
   }
 
 }
