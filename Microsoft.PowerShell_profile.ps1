@@ -11,38 +11,35 @@ function pull { git pull $args }
 function path { $env:path -split ";" }
 function which { (Get-Command $args).Definition }
 function mkdocs { docker run --rm -it -p 8000:8000 -v ${PWD}:/docs gitlab.tenonespace.com:5001/devops/docker-images/mkdocs:0.1.7 $args }
-function zci {
-  # Interactively select a tracked directory to open in VS Code
-  $path = zoxide query --interactive
-  if ([string]::IsNullOrWhiteSpace($path)) { return }
-  $resolvedPath = Resolve-Path -LiteralPath $path -ErrorAction SilentlyContinue
-  if ($resolvedPath) {
-    zoxide add $resolvedPath.Path
-    code $resolvedPath.Path
-  }
-}
-function zc {
+function c {
   param(
-    [Parameter(Mandatory = $true)]
+    [Parameter(Position = 0)]
     [string]$Target
   )
 
-  # Check if the target exists relative to the current directory
-  if (Test-Path -LiteralPath $Target) {
+  if ([string]::IsNullOrWhiteSpace($Target)) {
+    # No argument: interactively select a tracked directory
+    $path = zoxide query --interactive
+    if ([string]::IsNullOrWhiteSpace($path)) { return }
+    $resolved = Resolve-Path -LiteralPath $path -ErrorAction SilentlyContinue
+    if ($resolved) {
+      zoxide add $resolved.Path
+      code $resolved.Path
+    }
+  }
+  elseif (Test-Path -LiteralPath $Target) {
+    # Target exists relative to the current directory
     $resolved = Resolve-Path -LiteralPath $Target
-    code $resolved.Path
     zoxide add $resolved.Path
+    code $resolved.Path
   }
   else {
-    # Otherwise, query zoxide using the provided string
+    # Query zoxide using the provided string
     $path = zoxide query $Target 2>$null
-
-    # If zoxide found nothing, just exit
     if ([string]::IsNullOrWhiteSpace($path)) {
       Write-Host "No match"
       return
     }
-
     $resolved = Resolve-Path -LiteralPath $path -ErrorAction SilentlyContinue
     if ($resolved) {
       Write-Host "Opening $resolved"
@@ -51,7 +48,6 @@ function zc {
     }
   }
 }
-
 
 # POSIX-like commands
 if (Get-Alias rm -ErrorAction SilentlyContinue) { Remove-Item Alias:rm -Force }
