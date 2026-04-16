@@ -78,6 +78,31 @@ alias vimrc='$EDITOR ~/.config/nvim/init.lua'
 alias ch='cd $(find ~/DEV -type d -execdir test -d {}/.git \; -prune -print | sed -e s_/\.git__\ | fzf)'
 alias gits='~/git.sh'
 
+function c {
+  local target="$1"
+  local path
+
+  if [[ -z "$target" ]]; then
+    path=$(zoxide query --interactive 2>/dev/null)
+    [[ -z "$path" ]] && return
+    zoxide add "$path"
+    $EDITOR "$path"
+  elif [[ -e "$target" ]]; then
+    path=$(realpath "$target")
+    zoxide add "$path"
+    $EDITOR "$path"
+  else
+    path=$(zoxide query "$target" 2>/dev/null)
+    if [[ -z "$path" ]]; then
+      echo "No match"
+      return 1
+    fi
+    echo "Opening $path"
+    zoxide add "$path"
+    $EDITOR "$path"
+  fi
+}
+
 # GIT
 . "$HOME/.config/git-completion.bash"
 . "$HOME/.config/git-prompt.sh"
