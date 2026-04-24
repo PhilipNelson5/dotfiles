@@ -49,6 +49,60 @@ function c {
   }
 }
 
+function repo {
+  <#
+    .SYNOPSIS
+        Finds the nearest git root, converts the origin URL to HTTPS, and opens it.
+  #>
+
+  $currentPath = $ExecutionContext.SessionState.Path.CurrentLocation.Path
+  $gitDir = $null
+
+  # Loop until we find .git or hit the top of the file system
+  while ($currentPath) {
+    if (Test-Path (Join-Path $currentPath ".git")) {
+      $gitDir = $currentPath
+      break
+    }
+    $currentPath = Split-Path $currentPath -Parent
+  }
+
+  if (-not $gitDir) {
+    Write-Host "No git repository found"
+    return
+  }
+
+  # Get the origin URL using git directly
+  $url = Set-Location $gitDir -PassThru | ForEach-Object {
+    git remote get-url origin 2>$null
+  } | Select-Object -First 1
+
+  # Back to where we started
+  Set-Location $ExecutionContext.SessionState.Path.CurrentLocation.Path
+
+  if (-not $url) {
+    Write-Error "Could not find a remote named 'origin' in $gitDir"
+    return
+  }
+
+  # Convert SSH format to HTTPS
+  # Pattern 1: git@github.com:user/repo.git
+  if ($url -match '^git@([^:]+):(.+)') {
+    $domain = $Matches[1]
+    $path = $Matches[2] -replace '\.git$', ''
+    $url = "https://$domain/$path"
+  }
+  # Pattern 2: ssh://git@github.com/user/repo.git
+  elseif ($url -match '^ssh://git@([^/]+)/(.+)') {
+    $domain = $Matches[1]
+    $path = $Matches[2] -replace '\.git$', ''
+    $url = "https://$domain/$path"
+  }
+
+  Write-Host "Opening: $url" -ForegroundColor Cyan
+  Start-Process $url
+}
+
 # POSIX-like commands
 if (Get-Alias rm -ErrorAction SilentlyContinue) { Remove-Item Alias:rm -Force }
 function rm {
